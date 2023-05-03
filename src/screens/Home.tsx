@@ -1,11 +1,16 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
+import DefaultLayout from '../layouts/DefaultLayout';
 
 export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-    </View>
+    <DefaultLayout>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text>Home</Text>
+        </View>
+      </ScrollView>
+    </DefaultLayout>
   );
 };
 
