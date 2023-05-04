@@ -1,12 +1,15 @@
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
+import DetailLayout from '@layouts/DetailLayout';
 
-const Event = () => {
+export default () => {
   return (
-    <View>
-      <Text>Event</Text>
-    </View>
+    <DetailLayout title="이벤트">
+      <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
+        <View>
+          <Text>Event</Text>
+        </View>
+      </ScrollView>
+    </DetailLayout>
   );
 };
-
-export default Event;

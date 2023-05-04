@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   title: {
-    fontSize: 15,
+    fontSize: 20,
+    letterSpacing: 1.5,
   },
 });

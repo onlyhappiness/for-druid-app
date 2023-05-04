@@ -4,7 +4,7 @@ import HomeLayout from '@layouts/HomeLayout';
 
 export default () => {
   return (
-    <HomeLayout title="커뮤니티">
+    <HomeLayout title="COMMUNITY">
       <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
         <View style={styles.container}>
           <Text>Community</Text>

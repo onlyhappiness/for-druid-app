@@ -4,7 +4,7 @@ import HomeLayout from '../layouts/HomeLayout';
 
 export default () => {
   return (
-    <HomeLayout title={'홈'}>
+    <HomeLayout title={'HOME'}>
       <ScrollView>
         <View style={styles.container}>
           <Text>Home</Text>

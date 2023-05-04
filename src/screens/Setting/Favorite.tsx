@@ -1,12 +1,15 @@
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
+import DetailLayout from '@layouts/DetailLayout';
 
-const Favorite = () => {
+export default () => {
   return (
-    <View>
-      <Text>Favorite</Text>
-    </View>
+    <DetailLayout title="찜한목록">
+      <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
+        <View>
+          <Text>Favorite</Text>
+        </View>
+      </ScrollView>
+    </DetailLayout>
   );
 };
-
-export default Favorite;
