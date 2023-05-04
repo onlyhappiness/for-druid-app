@@ -1,12 +1,54 @@
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const DefaultHeader = () => {
+// icon
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import {useNavigation} from '@react-navigation/native';
+
+interface IDefaultHeader {
+  title: string | undefined;
+}
+
+export default ({title}: IDefaultHeader) => {
+  const navigation = useNavigation();
+
   return (
-    <View>
-      <Text>DefaultHeader</Text>
+    <View style={styles.header}>
+      <TouchableOpacity style={styles.left} onPress={() => navigation.goBack()}>
+        <FeatherIcon name="arrow-left" size={22} />
+      </TouchableOpacity>
+      <View style={styles.center}>
+        <Text>{title}</Text>
+      </View>
+
+      <View style={styles.right} />
     </View>
   );
 };
 
-export default DefaultHeader;
+const styles = StyleSheet.create({
+  header: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  left: {
+    flex: 1,
+  },
+  center: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '600',
+    // color:
+  },
+  right: {
+    flex: 1,
+    alignItems: 'flex-end',
+  },
+});

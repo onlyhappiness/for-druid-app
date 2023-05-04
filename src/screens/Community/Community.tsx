@@ -1,11 +1,16 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
+import HomeLayout from '@layouts/HomeLayout';
 
 export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Community</Text>
-    </View>
+    <HomeLayout title="커뮤니티">
+      <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
+        <View style={styles.container}>
+          <Text>Community</Text>
+        </View>
+      </ScrollView>
+    </HomeLayout>
   );
 };
 

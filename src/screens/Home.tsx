@@ -1,16 +1,16 @@
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
-import DefaultLayout from '../layouts/DefaultLayout';
+import HomeLayout from '../layouts/HomeLayout';
 
 export default () => {
   return (
-    <DefaultLayout>
+    <HomeLayout title={'홈'}>
       <ScrollView>
         <View style={styles.container}>
           <Text>Home</Text>
         </View>
       </ScrollView>
-    </DefaultLayout>
+    </HomeLayout>
   );
 };
 
