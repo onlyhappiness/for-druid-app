@@ -5,6 +5,8 @@ import BottomTabStack from '../stack/BottomTab';
 import Favorite from '@screens/Setting/Favorite';
 import Event from '@screens/Setting/Event';
 import Notice from '@screens/Setting/Notice';
+import FAQ from '@screens/Setting/FAQ';
+import Document from '@screens/Setting/Document';
 
 export default () => {
   const Stack = useMemo(() => createNativeStackNavigator(), []);
@@ -16,6 +18,8 @@ export default () => {
         <Stack.Screen name="Favorite" component={Favorite} />
         <Stack.Screen name="Event" component={Event} />
         <Stack.Screen name="Notice" component={Notice} />
+        <Stack.Screen name="FAQ" component={FAQ} />
+        <Stack.Screen name="Document" component={Document} />
       </Stack.Navigator>
     </NavigationContainer>
   );

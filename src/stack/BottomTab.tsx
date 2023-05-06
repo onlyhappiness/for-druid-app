@@ -75,20 +75,20 @@ export default () => {
       <Tab.Screen
         name="CommunityStack"
         component={CommunityStack}
-        // options={{title: '커뮤니티'}}
-        options={{title: ''}}
+        options={{title: '커뮤니티'}}
+        // options={{title: ''}}
       />
       <Tab.Screen
         name="HomeStack"
         component={HomeStack}
-        // options={{title: '홈'}}
-        options={{title: ''}}
+        options={{title: '홈'}}
+        // options={{title: ''}}
       />
       <Tab.Screen
         name="SettingStack"
         component={SettingStack}
-        // options={{title: '마이페이지'}}
-        options={{title: ''}}
+        options={{title: '마이페이지'}}
+        // options={{title: ''}}
       />
     </Tab.Navigator>
   );
