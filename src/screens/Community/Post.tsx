@@ -1,12 +1,15 @@
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
+import DetailLayout from '@layouts/DetailLayout';
 
-const Post = () => {
+export default () => {
   return (
-    <View>
-      <Text>Post</Text>
-    </View>
+    <DetailLayout title="글쓰기">
+      <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
+        <View>
+          <Text>글쓰기</Text>
+        </View>
+      </ScrollView>
+    </DetailLayout>
   );
 };
-
-export default Post;

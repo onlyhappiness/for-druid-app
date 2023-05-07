@@ -22,10 +22,8 @@
 
 ### 🛠️ 기술적 도전
 
-<br>
+<details>
 
-<!-- <details> -->
+- #### [절대경로 설정](https://github.com/onlyhappiness/for-druid-app/blob/main/docs/challenge/%EC%A0%88%EB%8C%80%EA%B2%BD%EB%A1%9C-%EC%84%A4%EC%A0%95.md)
 
-#### [절대경로 설정]()
-
-<!-- </details> -->
+</details>

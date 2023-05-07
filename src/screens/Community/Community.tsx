@@ -1,13 +1,28 @@
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import React from 'react';
 import HomeLayout from '@layouts/HomeLayout';
+import {COLOR} from '@theme/color';
+
+import IonIcon from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+import CommunityItem from '@components/community/CommunityItem';
 
 export default () => {
+  const navigation = useNavigation<any>();
+
   return (
     <HomeLayout title="COMMUNITY">
       <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
         <View style={styles.container}>
-          <Text>Community</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Post')}
+            style={styles.floatingButton}>
+            {/* <IonIcon name="add-outline" size={30} color={'white'} /> */}
+            {/* <IonIcon name="pencil-outline" size={30} color={'white'} /> */}
+            <IonIcon name="leaf-outline" size={30} color={'white'} />
+          </TouchableOpacity>
+
+          <CommunityItem />
         </View>
       </ScrollView>
     </HomeLayout>
@@ -17,7 +32,17 @@ export default () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingHorizontal: 10,
+  },
+  floatingButton: {
+    position: 'absolute',
+    bottom: 15,
+    right: 15,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: COLOR.green,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 });
