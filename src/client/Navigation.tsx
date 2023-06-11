@@ -8,6 +8,7 @@ import Notice from '@screens/Setting/Notice';
 import FAQ from '@screens/Setting/FAQ';
 import Document from '@screens/Setting/Document';
 import Post from '@screens/Community/Post';
+import Auth from '@stack/Auth';
 
 export default () => {
   const Stack = useMemo(() => createNativeStackNavigator(), []);
@@ -15,6 +16,7 @@ export default () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Auth" component={Auth} />
         <Stack.Screen name="BottomTabStack" component={BottomTabStack} />
         <Stack.Screen name="Post" component={Post} />
         <Stack.Screen name="Favorite" component={Favorite} />

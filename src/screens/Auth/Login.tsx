@@ -1,12 +1,41 @@
-import {View, Text} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const Login = () => {
+export default () => {
+  const {top, bottom} = useSafeAreaInsets();
+
   return (
-    <View>
-      <Text>Login</Text>
+    <View style={{flex: 1, paddingTop: top, paddingBottom: bottom}}>
+      <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
+        <View style={styles.container}>
+          <View style={{}}>
+            <Text>Logo</Text>
+          </View>
+
+          <View style={{}}>
+            <Text>Login</Text>
+
+            <TouchableOpacity style={{marginTop: 30}}>
+              <Text>회원가입</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
-export default Login;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+  },
+});
