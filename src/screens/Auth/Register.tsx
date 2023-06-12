@@ -4,10 +4,10 @@ import DetailLayout from '@layouts/DetailLayout';
 
 export default () => {
   return (
-    <DetailLayout title="LOGIN">
+    <DetailLayout title="회원가입">
       <ScrollView>
         <View>
-          <Text>Login</Text>
+          <Text>Register</Text>
         </View>
       </ScrollView>
     </DetailLayout>
