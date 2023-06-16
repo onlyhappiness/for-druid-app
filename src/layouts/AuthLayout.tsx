@@ -24,5 +24,6 @@ export default ({children, extraChildren}: IAuthLayout) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
 });

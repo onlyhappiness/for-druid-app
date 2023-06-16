@@ -4,43 +4,49 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  ScrollView,
+  Image,
 } from 'react-native';
 import React from 'react';
 import AuthLayout from '@layouts/AuthLayout';
 
 import {COLOR} from '@theme/color';
 import {useNavigation} from '@react-navigation/native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const {height} = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 
 export default () => {
+  const {bottom} = useSafeAreaInsets();
   const navigation = useNavigation();
 
   return (
     <AuthLayout>
-      {/* <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}> */}
-      <View style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Text>로고</Text>
-        </View>
+      <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
+        <View style={[styles.container, {paddingBottom: bottom}]}>
+          <Image
+            style={{
+              alignSelf: 'center',
+              marginBottom: 60,
+            }}
+            source={require('../../assets/test1.jpeg')}
+          />
 
-        <View style={styles.loginContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Login')}
-            style={styles.loginButton}>
-            <Text style={{fontSize: 14, fontWeight: '800', color: COLOR.green}}>
+            style={styles.loginBtn}>
+            <Text style={{fontSize: 14, fontWeight: '500'}}>
               이메일로 로그인
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => navigation.navigate('Register')}
-            style={styles.registerButton}>
+            style={styles.registerBtn}>
             <Text style={{fontSize: 14}}>회원가입</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      {/* </ScrollView> */}
+      </ScrollView>
     </AuthLayout>
   );
 };
@@ -49,37 +55,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 10,
+    padding: 10,
+    // paddingHorizontal: 10,
   },
-  logoContainer: {
-    width: '100%',
-    height: height / 2,
+  loginBtn: {
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  loginContainer: {
-    flex: 1,
-    alignItems: 'center',
-    paddingHorizontal: 15,
-  },
-  loginButton: {
-    width: '100%',
-    alignItems: 'center',
     paddingVertical: 20,
-    marginVertical: 30,
+    marginHorizontal: 20,
     borderWidth: 1,
-    borderColor: COLOR.green,
     borderRadius: 8,
   },
-  registerButton: {
-    // width: '100%',
-    // flex: 1,
-    // justifyContent: 'flex-end',
-    // alignItems: 'center',
-    // paddingBottom: 30,
-
-    width: '100%',
+  registerBtn: {
     alignItems: 'center',
-    marginVertical: 20,
+    marginTop: 40,
   },
 });
