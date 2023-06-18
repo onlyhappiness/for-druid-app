@@ -6,7 +6,7 @@ import {COLOR} from '@theme/color';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import CommunityItem from '@components/community/CommunityItem';
-import {useGetCommunityListQuery} from '@hooks/queries/useCommunity';
+import {useGetCommunityListQuery} from '../../hooks/queries/useCommunity';
 
 export default () => {
   const navigation = useNavigation<any>();
