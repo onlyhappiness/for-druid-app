@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingHorizontal: 10,
   },
-  profile: {width: 60, height: 60, backgroundColor: 'gray', borderRadius: 10},
+  profile: {width: 50, height: 50, backgroundColor: 'gray', borderRadius: 10},
   info: {paddingLeft: 10, justifyContent: 'space-around'},
   image: {
     backgroundColor: 'gray',

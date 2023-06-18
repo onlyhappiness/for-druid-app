@@ -29,7 +29,7 @@ export default () => {
               alignSelf: 'center',
               marginBottom: 60,
             }}
-            source={require('../../assets/test1.jpeg')}
+            source={require('../../assets/login.jpeg')}
           />
 
           <TouchableOpacity

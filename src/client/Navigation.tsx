@@ -16,8 +16,8 @@ export default () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Auth" component={Auth} />
         <Stack.Screen name="BottomTabStack" component={BottomTabStack} />
+        <Stack.Screen name="Auth" component={Auth} />
         <Stack.Screen name="Post" component={Post} />
         <Stack.Screen name="Favorite" component={Favorite} />
         <Stack.Screen name="Event" component={Event} />

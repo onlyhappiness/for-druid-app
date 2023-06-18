@@ -1,14 +1,20 @@
 import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import HomeLayout from '@layouts/HomeLayout';
 import {COLOR} from '@theme/color';
 
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import CommunityItem from '@components/community/CommunityItem';
+import {useGetCommunityListQuery} from '@hooks/queries/useCommunity';
 
 export default () => {
   const navigation = useNavigation<any>();
+
+  const [page] = useState(1);
+  const {data} = useGetCommunityListQuery(page);
+
+  console.log('data: ', data);
 
   return (
     <HomeLayout title="COMMUNITY">
