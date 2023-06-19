@@ -6,7 +6,7 @@ import {COLOR} from '@theme/color';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import CommunityItem from '@components/community/CommunityItem';
-import {useGetCommunityListQuery} from '../../hooks/queries/useCommunity';
+import {useGetCommunityListQuery} from '@hooks/queries/community.query';
 
 export default () => {
   const navigation = useNavigation<any>();
@@ -28,7 +28,9 @@ export default () => {
             <IonIcon name="leaf-outline" size={30} color={'white'} />
           </TouchableOpacity>
 
-          <CommunityItem />
+          {data?.data?.map((item: any) => {
+            return <CommunityItem item={item} />;
+          })}
         </View>
       </ScrollView>
     </HomeLayout>

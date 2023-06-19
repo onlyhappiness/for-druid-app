@@ -8,4 +8,6 @@ const api = axios.create({
   baseURL: getApiHost(),
 });
 
+// TODO: 인터셉터 추가
+
 export default api;
