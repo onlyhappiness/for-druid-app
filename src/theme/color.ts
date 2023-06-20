@@ -1,5 +1,9 @@
 export const COLOR = {
-  green: '#12BD7E',
+  // green: '#12BD7E',
+
+  primary500: '#80BC50',
+  primary300: '#B6D89A',
+  primary100: '#EBF4E3',
 
   black: '#212121',
 
