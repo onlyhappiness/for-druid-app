@@ -47,6 +47,11 @@ const nav2 = [
     name: '약관 확인',
     path: 'Document',
   },
+  {
+    id: 3,
+    name: '로그아웃',
+    path: 'Auth',
+  },
 ];
 
 export default () => {

@@ -1,22 +1,20 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
-import React from 'react';
+import {View, StyleSheet, ScrollView} from 'react-native';
+import React, {useState} from 'react';
 import HomeLayout from '../layouts/HomeLayout';
-import PostCard from '@components/PostCard';
+import {useGetCommunityListQuery} from '@hooks/queries/community.query';
+import CommunityItem from '@components/community/CommunityItem';
 
 export default () => {
+  const [page] = useState(1);
+  const {data} = useGetCommunityListQuery(page);
+
   return (
     <HomeLayout title={'HOME'}>
       <ScrollView>
         <View style={styles.container}>
-          {/* <Text>Home</Text> */}
-
-          <PostCard />
+          {data?.data?.map((item: any) => {
+            return <CommunityItem item={item} />;
+          })}
         </View>
       </ScrollView>
     </HomeLayout>
