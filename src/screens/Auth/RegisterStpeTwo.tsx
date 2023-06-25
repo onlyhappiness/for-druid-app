@@ -1,12 +1,20 @@
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
+import DetailLayout from '@layouts/DetailLayout';
 
-const RegisterStpeTwo = () => {
+export default () => {
   return (
-    <View>
-      <Text>RegisterStpeTwo</Text>
-    </View>
+    <DetailLayout title="회원가입">
+      <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
+        <View style={styles.container}></View>
+      </ScrollView>
+    </DetailLayout>
   );
 };
 
-export default RegisterStpeTwo;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+  },
+});

@@ -10,10 +10,10 @@ interface IDetailLayout {
 }
 
 export default ({title, children, extraChildren}: IDetailLayout) => {
-  const {top, bottom} = useSafeAreaInsets();
+  const {top} = useSafeAreaInsets();
 
   return (
-    <View style={[styles.layout, {marginBottom: bottom}]}>
+    <View style={styles.layout}>
       <View style={[styles.container, {paddingTop: top}]}>
         <DetailHeader title={title} />
         {children}

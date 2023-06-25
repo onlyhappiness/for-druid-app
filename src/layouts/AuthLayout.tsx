@@ -12,10 +12,7 @@ export default ({children, extraChildren}: IAuthLayout) => {
 
   return (
     <View style={{flex: 1}}>
-      <View
-        style={[styles.container, {paddingTop: top, paddingBottom: bottom}]}>
-        {children}
-      </View>
+      <View style={[styles.container, {paddingTop: top}]}>{children}</View>
       {extraChildren}
     </View>
   );
