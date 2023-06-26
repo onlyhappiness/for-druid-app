@@ -10,6 +10,7 @@ import MyInfo from '@screens/Setting/MyInfo';
 
 import {COLOR} from '@theme/color';
 
+// 커뮤니티
 const CommunityStack = () => {
   const Stack = useMemo(() => createNativeStackNavigator(), []);
 
@@ -20,6 +21,7 @@ const CommunityStack = () => {
   );
 };
 
+// 홈
 const HomeStack = () => {
   const Stack = useMemo(() => createNativeStackNavigator(), []);
 
@@ -30,6 +32,7 @@ const HomeStack = () => {
   );
 };
 
+// 설정
 const SettingStack = () => {
   const Stack = useMemo(() => createNativeStackNavigator(), []);
 
@@ -40,6 +43,7 @@ const SettingStack = () => {
   );
 };
 
+// main
 export default () => {
   const Tab = useMemo(() => createBottomTabNavigator(), []);
 
@@ -55,8 +59,6 @@ export default () => {
 
           if (route.name === 'CommunityStack') {
             iconName = 'ios-chatbox-outline';
-            // iconName = 'ios-reader-outline';
-            // iconName = 'md-reader-outline';
           } else if (route.name === 'HomeStack') {
             iconName = 'home-outline';
           } else {
@@ -76,19 +78,16 @@ export default () => {
         name="CommunityStack"
         component={CommunityStack}
         options={{title: '커뮤니티'}}
-        // options={{title: ''}}
       />
       <Tab.Screen
         name="HomeStack"
         component={HomeStack}
         options={{title: '홈'}}
-        // options={{title: ''}}
       />
       <Tab.Screen
         name="SettingStack"
         component={SettingStack}
         options={{title: '마이페이지'}}
-        // options={{title: ''}}
       />
     </Tab.Navigator>
   );

@@ -5,7 +5,7 @@ import {COLOR} from '@theme/color';
 
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-import CommunityItem from '@components/community/CommunityItem';
+import CommunityItem from '@components/CommunityItem';
 import {useGetCommunityListQuery} from '@hooks/queries/community.query';
 
 export default () => {

@@ -1,8 +1,8 @@
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, FlatList, ActivityIndicator} from 'react-native';
 import React, {useState} from 'react';
 import HomeLayout from '../layouts/HomeLayout';
 import {useGetCommunityListQuery} from '@hooks/queries/community.query';
-import CommunityItem from '@components/community/CommunityItem';
+import CommunityItem from '@components/CommunityItem';
 
 export default () => {
   const [page] = useState(1);
@@ -10,13 +10,15 @@ export default () => {
 
   return (
     <HomeLayout title={'HOME'}>
-      <ScrollView>
-        <View style={styles.container}>
-          {data?.data?.map((item: any) => {
-            return <CommunityItem item={item} />;
-          })}
-        </View>
-      </ScrollView>
+      <View style={styles.container}>
+        <FlatList
+          style={{width: '100%'}}
+          data={data?.data}
+          renderItem={({item}) => <CommunityItem item={item} />}
+          keyExtractor={item => item?.id.toString()}
+          ListEmptyComponent={<ActivityIndicator />}
+        />
+      </View>
     </HomeLayout>
   );
 };
@@ -25,7 +27,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // justifyContent: 'center',
-    alignItems: 'center',
     paddingHorizontal: 10,
   },
 });

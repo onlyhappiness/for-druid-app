@@ -9,6 +9,7 @@ import FAQ from '@screens/Setting/FAQ';
 import Document from '@screens/Setting/Document';
 import Post from '@screens/Community/Post';
 import Auth from '@stack/Auth';
+import CommunityInfo from '@screens/CommunityInfo';
 
 export default () => {
   const Stack = useMemo(() => createNativeStackNavigator(), []);
@@ -24,6 +25,7 @@ export default () => {
         <Stack.Screen name="Notice" component={Notice} />
         <Stack.Screen name="FAQ" component={FAQ} />
         <Stack.Screen name="Document" component={Document} />
+        <Stack.Screen name="CommunityInfo" component={CommunityInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

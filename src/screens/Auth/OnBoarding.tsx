@@ -19,7 +19,7 @@ const {width, height} = Dimensions.get('screen');
 
 export default () => {
   const {bottom} = useSafeAreaInsets();
-  const navigation: any = useNavigation();
+  const navigation = useNavigation<any>();
 
   return (
     <AuthLayout>

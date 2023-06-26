@@ -1,16 +1,25 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
+import dayjs from 'dayjs';
+import {useNavigation} from '@react-navigation/native';
 
 export default ({item}: {item: any}) => {
-  console.log('item: ', item);
+  // console.log('item: ', item);
+
+  const navigation = useNavigation<any>();
 
   return (
-    <View style={styles.community}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      style={styles.community}
+      onPress={() => {
+        navigation.navigate('CommunityInfo', {id: item?.id});
+      }}>
       <View style={styles.profileContainer}>
         <View style={styles.profile} />
         <View style={styles.info}>
-          <Text>nickname</Text>
-          <Text>{item?.createdAt}</Text>
+          <Text>{item?.Users?.nickname}</Text>
+          <Text>{dayjs(item?.createdAt).format('YYYY.MM.DD HH:mm')}</Text>
         </View>
       </View>
 
@@ -25,12 +34,11 @@ export default ({item}: {item: any}) => {
           )}
         </View>
 
-        {/* TODO: flatList */}
         <View style={{paddingTop: 15}}>
           <View style={styles.image} />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -40,6 +48,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     marginTop: 20,
     borderRadius: 10,
+    width: '100%',
   },
   profileContainer: {
     flexDirection: 'row',

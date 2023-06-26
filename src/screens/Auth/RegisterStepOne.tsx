@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import BottomButton from '@components/BottomButton';
 
 export default () => {
-  const navigation: any = useNavigation();
+  const navigation = useNavigation<any>();
 
   return (
     <DetailLayout
