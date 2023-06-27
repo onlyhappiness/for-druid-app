@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   community: {
     backgroundColor: 'white',
     paddingVertical: 15,
-    marginTop: 20,
+    marginTop: 10,
     borderRadius: 10,
     width: '100%',
   },

@@ -8,15 +8,21 @@ interface IHomeLayout {
   title: string | undefined;
   children: ReactNode;
   extraChildren?: ReactNode;
+  headerButton?: any;
 }
 
-export default ({title, children, extraChildren}: IHomeLayout) => {
+export default ({
+  title,
+  children,
+  extraChildren,
+  headerButton,
+}: IHomeLayout) => {
   const {top} = useSafeAreaInsets();
 
   return (
     <View style={styles.layout}>
       <View style={[styles.container, {paddingTop: top}]}>
-        <HomeHeader title={title} />
+        <HomeHeader title={title} headerButton={headerButton} />
         {children}
       </View>
       {extraChildren}
