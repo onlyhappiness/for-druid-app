@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   profileContainer: {
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: 'gray',
+    borderBottomColor: '#f1f3f5',
     paddingBottom: 20,
     paddingHorizontal: 10,
   },

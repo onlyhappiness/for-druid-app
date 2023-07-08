@@ -33,7 +33,8 @@ export default ({
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    // backgroundColor: '#f5f5f5',
+    backgroundColor: '#f1f3f5',
   },
   container: {
     flex: 1,

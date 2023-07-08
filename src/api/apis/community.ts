@@ -19,7 +19,7 @@ export const createCommunity = async (req: ICreateCommunity) => {
 export const getCommunity = async (communityId: number) => {
   const res = await api.get(`/community/${communityId}`);
 
-  return res;
+  return res?.data?.data;
 };
 
 //** 커뮤니티 수정 */

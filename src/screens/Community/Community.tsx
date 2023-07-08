@@ -19,8 +19,20 @@ import InputSearch from '@components/InputSearch';
 export default () => {
   const navigation = useNavigation();
 
+  const [field, setField] = useState('');
+  const [keyword, setKeyword] = useState('');
+
+  const [search, setSearch] = useState({});
+
   const [page] = useState(1);
   const {data} = useGetCommunityListQuery(page);
+
+  const onSearch = async () => {
+    setSearch({
+      field,
+      keyword,
+    });
+  };
 
   return (
     <HomeLayout
