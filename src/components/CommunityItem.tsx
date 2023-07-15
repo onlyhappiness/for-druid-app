@@ -2,19 +2,21 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/native';
+import ImageSwiper from './ImageSwiper';
 
 export default ({item}: {item: any}) => {
-  // console.log('item: ', item);
+  console.log('item: ', item.images);
 
   const navigation = useNavigation<any>();
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.7}
+    <View
       style={styles.community}
-      onPress={() => {
-        navigation.navigate('CommunityInfo', {id: item?.id});
-      }}>
+      // activeOpacity={0.7}
+      // onPress={() => {
+      //   navigation.navigate('CommunityInfo', {id: item?.id});
+      // }}
+    >
       <View style={styles.profileContainer}>
         <View style={styles.profile} />
         <View style={styles.info}>
@@ -35,10 +37,10 @@ export default ({item}: {item: any}) => {
         </View>
 
         <View style={{paddingTop: 15}}>
-          <View style={styles.image} />
+          {item?.images !== null && <ImageSwiper images={item?.images} />}
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -59,9 +61,4 @@ const styles = StyleSheet.create({
   },
   profile: {width: 50, height: 50, backgroundColor: 'gray', borderRadius: 10},
   info: {paddingLeft: 10, justifyContent: 'space-around'},
-  image: {
-    backgroundColor: 'gray',
-    height: 200,
-    borderRadius: 10,
-  },
 });
