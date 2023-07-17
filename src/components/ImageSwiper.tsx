@@ -1,23 +1,27 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Swiper from 'react-native-swiper';
 import FastImage from 'react-native-fast-image';
 
 export default ({images}: any) => {
   return (
-    <Swiper style={styles.swiper}>
-      {images?.map((image: string, index: number) => {
-        return (
-          <FastImage
-            key={index}
-            style={styles.image}
-            source={{
-              uri: image,
-            }}
-          />
-        );
-      })}
-    </Swiper>
+    <View style={{paddingTop: 15}}>
+      <Swiper style={styles.swiper}>
+        {images?.map((image: string, index: number) => {
+          return (
+            <TouchableOpacity activeOpacity={1}>
+              <FastImage
+                key={index}
+                style={styles.image}
+                source={{
+                  uri: image,
+                }}
+              />
+            </TouchableOpacity>
+          );
+        })}
+      </Swiper>
+    </View>
   );
 };
 

@@ -8,7 +8,7 @@ interface IAuthLayout {
 }
 
 export default ({children, extraChildren}: IAuthLayout) => {
-  const {top, bottom} = useSafeAreaInsets();
+  const {top} = useSafeAreaInsets();
 
   return (
     <View style={{flex: 1}}>

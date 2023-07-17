@@ -1,29 +1,40 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import FastImage from 'react-native-fast-image';
 
 /**
  * @description
- * 상세 feed에서 사용하는 유저 프로필에 대한 component입니다.
+ * feed 및 어느 곳에서든 사용하는 유저 프로필에 대한 component입니다.
  */
-export default ({userData}: any) => {
+export default ({userData, image, children}: any) => {
   return (
-    <View style={styles.userInfoHeader}>
-      <View style={styles.profile} />
-      <Text>{userData?.nickname}</Text>
+    <View style={styles.profileContainer}>
+      {image ? (
+        <FastImage style={styles.profile} source={{uri: image}} />
+      ) : (
+        <View style={styles.profile} />
+      )}
+      <View style={styles.info}>
+        <Text>{userData?.nickname}</Text>
+        {children}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  userInfoHeader: {
+  profileContainer: {
     flexDirection: 'row',
-    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f1f3f5',
+    paddingBottom: 20,
+    paddingHorizontal: 10,
   },
   profile: {
-    width: 42,
-    height: 42,
+    width: 50,
+    height: 50,
     backgroundColor: 'gray',
     borderRadius: 10,
-    marginRight: 10,
   },
+  info: {paddingLeft: 10, justifyContent: 'space-around'},
 });

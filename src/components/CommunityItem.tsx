@@ -3,31 +3,29 @@ import React from 'react';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/native';
 import ImageSwiper from './ImageSwiper';
+import UserInfoHeader from './header/UserInfoHeader';
 
 export default ({item}: {item: any}) => {
-  console.log('item: ', item.images);
-
   const navigation = useNavigation<any>();
 
   return (
-    <View
+    <TouchableOpacity
       style={styles.community}
-      // activeOpacity={0.7}
-      // onPress={() => {
-      //   navigation.navigate('CommunityInfo', {id: item?.id});
-      // }}
-    >
-      <View style={styles.profileContainer}>
-        <View style={styles.profile} />
-        <View style={styles.info}>
-          <Text>{item?.Users?.nickname}</Text>
+      activeOpacity={0.7}
+      onPress={() => {
+        navigation.navigate('CommunityInfo', {id: item?.id});
+      }}>
+      <UserInfoHeader
+        userData={item?.Users}
+        image={item?.Users?.image}
+        children={
           <Text>{dayjs(item?.createdAt).format('YYYY.MM.DD HH:mm')}</Text>
-        </View>
-      </View>
+        }
+      />
 
-      <View style={{padding: 10}}>
+      <View style={styles.textContainer}>
         <View>
-          <Text style={{paddingTop: 8}}>{item?.content}</Text>
+          <Text style={styles.content}>{item?.content}</Text>
 
           {item?.content?.length > 30 && (
             <View style={{paddingTop: 8}}>
@@ -36,11 +34,9 @@ export default ({item}: {item: any}) => {
           )}
         </View>
 
-        <View style={{paddingTop: 15}}>
-          {item?.images !== null && <ImageSwiper images={item?.images} />}
-        </View>
+        {item?.images !== null && <ImageSwiper images={item?.images} />}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -52,13 +48,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
   },
-  profileContainer: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#f1f3f5',
-    paddingBottom: 20,
-    paddingHorizontal: 10,
+  textContainer: {
+    padding: 10,
   },
-  profile: {width: 50, height: 50, backgroundColor: 'gray', borderRadius: 10},
-  info: {paddingLeft: 10, justifyContent: 'space-around'},
+  content: {paddingTop: 8},
 });
