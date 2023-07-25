@@ -32,16 +32,16 @@
     "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
     "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
-      "@api/*": ["src/api/*"],
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@data/*": ["src/data/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@screens/*": ["src/screens/*"],
-      "@stack/*": ["src/stack/*"],
-      "@theme/*": ["src/theme/*"],
-      "@util/*": ["src/util/*"]
+      "@api/*": ["app/api/*"],
+      "@assets/*": ["app/assets/*"],
+      "@components/*": ["app/components/*"],
+      "@data/*": ["app/data/*"],
+      "@hooks/*": ["app/hooks/*"],
+      "@layouts/*": ["app/layouts/*"],
+      "@screens/*": ["app/screens/*"],
+      "@stack/*": ["app/stack/*"],
+      "@theme/*": ["app/theme/*"],
+      "@util/*": ["app/util/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [
