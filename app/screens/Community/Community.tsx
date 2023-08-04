@@ -15,24 +15,13 @@ import {COLOR} from '@theme/color';
 import CommunityItem from '@components/CommunityItem';
 import {useGetCommunityListQuery} from '@hooks/queries/community.query';
 import InputSearch from '@components/InputSearch';
+import NoData from '@screens/NoData';
 
 export default () => {
   const navigation = useNavigation();
 
-  // const [field, setField] = useState('');
-  // const [keyword, setKeyword] = useState('');
-
-  // const [search, setSearch] = useState({});
-
   const [page] = useState(1);
   const {data} = useGetCommunityListQuery(page);
-
-  // const onSearch = async () => {
-  //   setSearch({
-  //     field,
-  //     keyword,
-  //   });
-  // };
 
   return (
     <HomeLayout
@@ -45,18 +34,22 @@ export default () => {
         </TouchableOpacity>
       }>
       <View style={styles.container}>
-        <FlatList
-          style={{width: '100%'}}
-          data={data?.data}
-          renderItem={({item}) => <CommunityItem item={item} />}
-          keyExtractor={item => item?.id.toString()}
-          ListEmptyComponent={<ActivityIndicator />}
-          ListHeaderComponent={
-            <>
-              <InputSearch />
-            </>
-          }
-        />
+        {data?.data?.length === 0 ? (
+          <NoData />
+        ) : (
+          <FlatList
+            style={{width: '100%'}}
+            data={data?.data}
+            renderItem={({item}) => <CommunityItem item={item} />}
+            keyExtractor={item => item?.id.toString()}
+            ListEmptyComponent={<ActivityIndicator />}
+            ListHeaderComponent={
+              <>
+                <InputSearch />
+              </>
+            }
+          />
+        )}
       </View>
     </HomeLayout>
   );

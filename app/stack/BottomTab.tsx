@@ -58,7 +58,7 @@ export default () => {
           let iconName = '';
 
           if (route.name === 'CommunityStack') {
-            iconName = 'ios-chatbox-outline';
+            iconName = 'chatbox-outline';
           } else if (route.name === 'HomeStack') {
             iconName = 'home-outline';
           } else {

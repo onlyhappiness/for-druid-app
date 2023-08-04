@@ -10,7 +10,7 @@ import React, {useState} from 'react';
 export default () => {
   const [search, setSearch] = useState('');
 
-  console.log('search: ', search);
+  // console.log('search: ', search);
 
   return (
     <View style={styles.container}>

@@ -6,6 +6,12 @@ import ImageSwiper from './ImageSwiper';
 import UserInfoHeader from './header/UserInfoHeader';
 
 export default ({item}: {item: any}) => {
+  if (item) {
+    console.log('item: ', item);
+  } else {
+    console.log('없음요');
+  }
+
   const navigation = useNavigation<any>();
 
   return (

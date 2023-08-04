@@ -18,6 +18,8 @@
     "axios": "^1.4.0",
     "babel-plugin-module-resolver": "^5.0.0",
     "dayjs": "^1.11.9",
+    "lottie-ios": "^4.2.0",
+    "lottie-react-native": "^6.0.1",
     "react": "18.2.0",
     "react-native": "0.72.3",
     "react-native-fast-image": "^8.6.3",
