@@ -35,7 +35,7 @@ export default () => {
       }>
       <View style={styles.container}>
         {data?.data?.length === 0 ? (
-          <NoData />
+          <NoData title={'아무런 Feed가 없어요..'} />
         ) : (
           <FlatList
             style={{width: '100%'}}

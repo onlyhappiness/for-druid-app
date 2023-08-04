@@ -2,7 +2,11 @@ import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import LottieView from 'lottie-react-native';
 
-export default () => {
+interface INodata {
+  title: string;
+}
+
+export default ({title}: INodata) => {
   return (
     <View style={{flex: 1}}>
       <LottieView
@@ -11,7 +15,7 @@ export default () => {
         autoPlay
         loop
       />
-      <Text style={styles.text}>아무런 Feed가 없어요..</Text>
+      <Text style={styles.text}>{title}</Text>
     </View>
   );
 };
@@ -22,9 +26,9 @@ const styles = StyleSheet.create({
     height: '80%',
   },
   text: {
-    color: '#868686',
+    color: '#868E96',
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     justifyContent: 'center',
     alignItems: 'center',
   },
