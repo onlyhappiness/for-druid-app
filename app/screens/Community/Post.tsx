@@ -4,10 +4,9 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  TextInput,
 } from 'react-native';
 import React, {useState} from 'react';
-// import DetailLayout from '@layouts/DetailLayout';
-// import DefaultLayout from '@layouts/DefaultLayout';
 import PostLayout from '@layouts/PostLayout';
 
 import IonIcon from 'react-native-vector-icons/Ionicons';
@@ -19,7 +18,26 @@ export default () => {
     <PostLayout title="커뮤니티 글쓰기" onPress={<HeaderButton />}>
       <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
         <View style={styles.container}>
-          <UploadButton />
+          {/* UploadImage */}
+          <View style={styles.uploadButton}>
+            <TouchableOpacity
+              style={styles.uploadIcon}
+              onPress={() => {
+                console.log('사진사진');
+              }}>
+              <IonIcon name="camera-outline" size={24} color={'#B1BDC5'} />
+            </TouchableOpacity>
+          </View>
+
+          {/* TitleContainer */}
+          <View style={styles.titleContainer}>
+            <TextInput
+              style={{fontSize: 15}}
+              placeholder="글 제목"
+              value={title}
+              onChangeText={v => setTitle(v)}
+            />
+          </View>
         </View>
       </ScrollView>
     </PostLayout>
@@ -40,26 +58,6 @@ const HeaderButton = () => {
   );
 };
 
-/**
- * @description
- * 사진 uploadButton
- * @returns 사진 업로드 버튼
- */
-const UploadButton = () => {
-  return (
-    <View style={styles.uploadButton}>
-      <TouchableOpacity
-        style={styles.uploadIcon}
-        onPress={() => {
-          console.log('사진사진');
-        }}>
-        <IonIcon name="camera-outline" size={24} color={'#B1BDC5'} />
-        {/* <Text style={{}}>아이콘</Text> */}
-      </TouchableOpacity>
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -67,6 +65,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   uploadButton: {
+    paddingLeft: 5,
     borderBottomColor: '#ced4da',
     borderBottomWidth: 1,
     paddingBottom: 10,
@@ -80,5 +79,11 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 10,
+  },
+  titleContainer: {
+    borderBottomColor: '#ced4da',
+    borderBottomWidth: 1,
+    paddingHorizontal: 5,
+    paddingVertical: 25,
   },
 });
