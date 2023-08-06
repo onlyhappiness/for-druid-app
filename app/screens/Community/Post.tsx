@@ -10,12 +10,29 @@ import React, {useState} from 'react';
 import PostLayout from '@layouts/PostLayout';
 
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 
 export default () => {
+  const navigation = useNavigation();
+
   const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const onConfirm = () => {
+    const body = {
+      title,
+      content,
+    };
+
+    console.log('body: ', body);
+
+    navigation.goBack();
+  };
 
   return (
-    <PostLayout title="커뮤니티 글쓰기" onPress={<HeaderButton />}>
+    <PostLayout
+      title="커뮤니티 글쓰기"
+      onPress={<HeaderButton onConfirm={onConfirm} />}>
       <ScrollView contentContainerStyle={{flexGrow: 1}} style={{flex: 1}}>
         <View style={styles.container}>
           {/* UploadImage */}
@@ -32,12 +49,21 @@ export default () => {
           {/* TitleContainer */}
           <View style={styles.titleContainer}>
             <TextInput
-              style={{fontSize: 15}}
+              style={styles.title}
               placeholder="글 제목"
               value={title}
               onChangeText={v => setTitle(v)}
             />
           </View>
+
+          <TextInput
+            style={styles.content}
+            multiline
+            numberOfLines={4}
+            placeholder="게시글 내용을 작성해주세요."
+            value={content}
+            onChangeText={v => setContent(v)}
+          />
         </View>
       </ScrollView>
     </PostLayout>
@@ -47,12 +73,9 @@ export default () => {
 /**
  * Header 완료 button
  */
-const HeaderButton = () => {
+const HeaderButton = ({onConfirm}: any) => {
   return (
-    <TouchableOpacity
-      onPress={() => {
-        console.log('확인');
-      }}>
+    <TouchableOpacity onPress={onConfirm}>
       <Text>완료</Text>
     </TouchableOpacity>
   );
@@ -85,5 +108,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingHorizontal: 5,
     paddingVertical: 25,
+  },
+  title: {
+    fontSize: 15,
+  },
+  content: {
+    fontSize: 15,
+    marginTop: 20,
   },
 });
