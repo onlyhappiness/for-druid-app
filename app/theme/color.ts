@@ -1,3 +1,9 @@
+const green = {};
+
+const black = {
+  black: "#212121",
+};
+
 export const COLOR = {
   /* primary color */
   primary700: "#00A78B",
@@ -5,8 +11,6 @@ export const COLOR = {
   primary300: "#80BC50",
   primary200: "#B6D89A",
   primary100: "#EBF4E3",
-
-  black: "#212121",
 
   /* border */
   border: "#EAF0E5",

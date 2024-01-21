@@ -16,7 +16,7 @@ export default ({ containerStyle, textStyle, ...props }: any) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    // width: "100%",
     borderRadius: 8,
     borderColor: COLOR.border,
     borderWidth: 1,

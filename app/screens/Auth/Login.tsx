@@ -1,5 +1,6 @@
 import Button from "@components/Button";
 import Input from "@components/Input";
+import { useNavigation } from "@react-navigation/native";
 import { COLOR } from "@theme/color";
 import { useState } from "react";
 import {
@@ -13,7 +14,9 @@ import {
 } from "react-native";
 
 export default () => {
-  const [userId, setUserId] = useState("");
+  const navigation = useNavigation<any>();
+
+  const [signname, setSignname] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -25,15 +28,15 @@ export default () => {
           </View>
 
           <Input
-            containerStyle={{ marginBottom: 20 }}
-            value={userId}
-            onChange={(v: string) => setUserId(v)}
+            containerStyle={{ marginBottom: 20, width: "100%" }}
+            value={signname}
+            onChange={(v: string) => setSignname(v)}
             placeholder="아이디"
           />
 
           <Input
             secureTextEntry
-            containerStyle={{ marginBottom: 40 }}
+            containerStyle={{ marginBottom: 40, width: "100%" }}
             value={password}
             onChange={(v: string) => setPassword(v)}
             placeholder="비밀번호"
@@ -43,13 +46,21 @@ export default () => {
             title="로그인"
             containerStyle={styles.loginButton}
             textStyle={styles.buttonText}
+            onPress={() => {
+              navigation.navigate("RegisterStepOne");
+            }}
           />
 
           <View style={styles.buttonContainer}>
             <Text style={{ marginRight: 6, fontSize: 14 }}>
               계정이 없으신가요?
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("RegisterStepOne");
+              }}
+              style={{ alignItems: "center" }}
+            >
               <Text style={styles.registerText}>회원가입</Text>
             </TouchableOpacity>
           </View>
@@ -78,6 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.primary500,
   },
   loginButton: {
+    width: "100%",
     backgroundColor: COLOR.primary500,
     marginBottom: 30,
   },
@@ -88,11 +100,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     alignItems: "center",
+    // justifyContent: "center",
   },
   registerText: {
-    fontSize: 14,
     color: COLOR.primary700,
-    fontWeight: "600",
   },
   socialContainer: {},
 });
