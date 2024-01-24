@@ -30,7 +30,7 @@ export default () => {
           <Input
             containerStyle={{ marginBottom: 20, width: "100%" }}
             value={signname}
-            onChange={(v: string) => setSignname(v)}
+            onChangeText={(v: any) => setSignname(v)}
             placeholder="아이디"
           />
 
@@ -38,7 +38,7 @@ export default () => {
             secureTextEntry
             containerStyle={{ marginBottom: 40, width: "100%" }}
             value={password}
-            onChange={(v: string) => setPassword(v)}
+            onChangeText={(v: any) => setPassword(v)}
             placeholder="비밀번호"
           />
 

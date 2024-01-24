@@ -16,6 +16,7 @@ export default ({ containerStyle, textStyle, title, ...props }: any) => {
 const styles = StyleSheet.create({
   container: {
     // width: "100%",
+    // height: 40,
     borderRadius: 8,
     paddingVertical: 15,
     alignItems: "center",

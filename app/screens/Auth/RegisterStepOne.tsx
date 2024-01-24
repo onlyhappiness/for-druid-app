@@ -1,9 +1,10 @@
 import Button from "@components/Button";
+import HelperText from "@components/HelperText";
 import Input from "@components/Input";
 import DefaultLayout from "@layouts/DefaultLayout";
 import { useNavigation } from "@react-navigation/native";
 import { COLOR } from "@theme/color";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default () => {
@@ -14,6 +15,18 @@ export default () => {
   const [verificationCode, setVerificationCode] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+
+  const isEnableDuplicate = useMemo(() => {
+    return signname.length >= 6 && signname.length <= 12;
+  }, [signname]);
+
+  const isEnableRequestVerify = useMemo(() => {}, [phone]);
+
+  const isEnableVerify = useMemo(() => {
+    return verificationCode.length == 6;
+  }, []);
+
+  // const isDisableNext = useMemo(() => {}, []);
 
   return (
     <DefaultLayout>
@@ -27,10 +40,10 @@ export default () => {
             <View style={styles.row}>
               <View style={{ flex: 1 }}>
                 <Input
-                  containerStyle={[{ flex: 1, height: 40 }]}
+                  containerStyle={[{ flex: 1 }]}
                   placeholder="아이디를 입력해주세요."
                   value={signname}
-                  onChange={(v: string) => setSignname(v)}
+                  onChangeText={(v: any) => setSignname(v)}
                 />
               </View>
 
@@ -40,17 +53,22 @@ export default () => {
                 textStyle={{ fontSize: 14, color: "white" }}
               />
             </View>
-            <Text style={styles.errorText}>에러 문구</Text>
+            <HelperText
+              title="아이디는 6자 이상 12자 이하로 입력해주세요."
+              containerStyle={""}
+              textStyle={""}
+            />
           </View>
 
           <View style={styles.stack}>
             <View style={styles.row}>
               <View style={{ flex: 1 }}>
                 <Input
-                  containerStyle={{ flex: 1, height: 40 }}
+                  keyboardType="number-pad"
+                  containerStyle={{ flex: 1 }}
                   placeholder="전화번호를 입력해주세요."
                   value={phone}
-                  onChange={(v: string) => setPhone(v)}
+                  onChangeText={(v: any) => setPhone(v)}
                 />
               </View>
               <Button
@@ -59,17 +77,17 @@ export default () => {
                 textStyle={{ fontSize: 14, color: "white" }}
               />
             </View>
-            <Text style={styles.successText}>성공 문구</Text>
+            {/* <Text style={styles.successText}>성공 문구</Text> */}
           </View>
 
           <View style={styles.stack}>
             <View style={styles.row}>
               <View style={{ flex: 1 }}>
                 <Input
-                  containerStyle={{ flex: 1, height: 40 }}
+                  containerStyle={{ flex: 1 }}
                   placeholder="인증번호를 입력해주세요."
                   value={verificationCode}
-                  onChange={(v: string) => setVerificationCode(v)}
+                  onChangeText={(v: any) => setVerificationCode(v)}
                 />
               </View>
               <Button
@@ -88,14 +106,14 @@ export default () => {
             }}
             placeholder="비밀번호를 입력해주세요."
             value={password}
-            onChange={(v: string) => setPassword(v)}
+            onChangeText={(v: any) => setPassword(v)}
           />
 
           <Input
             containerStyle={{ width: "100%", marginBottom: 40 }}
             placeholder="비밀번호를 한번 더 입력해주세요."
             value={rePassword}
-            onChange={(v: string) => setRePassword(v)}
+            onChangeText={(v: any) => setRePassword(v)}
           />
 
           <Button
@@ -151,11 +169,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "100%",
-  },
-  buttonContainer: {
-    width: "28%",
-    marginLeft: 10,
-    height: 40,
   },
   button: {
     backgroundColor: COLOR.primary500,
