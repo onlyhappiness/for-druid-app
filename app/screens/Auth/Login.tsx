@@ -86,11 +86,11 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     marginBottom: 50,
-    backgroundColor: COLOR.primary500,
+    backgroundColor: COLOR.green,
   },
   loginButton: {
     width: "100%",
-    backgroundColor: COLOR.primary500,
+    backgroundColor: COLOR.green,
     marginBottom: 30,
   },
   buttonText: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
   },
   registerText: {
-    color: COLOR.primary700,
+    color: COLOR.greenDark,
   },
   socialContainer: {},
 });

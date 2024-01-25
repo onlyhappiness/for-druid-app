@@ -1,24 +1,32 @@
-const green = {};
+const green = {
+  greenLight: "#76e8ad",
+  green: "#35d48d",
+  greenDark: "#1bbf83",
+};
+
+const gray = {
+  grayLight: "#eaeeef",
+  gray: "#e1e4e6",
+  grayDark: "#ced3d6",
+};
 
 const black = {
-  black: "#212121",
+  blackLight: "#4d5256",
+  black: "#363a3c",
+  blackDark: "#292a2b",
 };
 
 export const COLOR = {
   /* primary color */
-  primary700: "#00A78B",
-  primary500: "#12BD7E",
-  primary300: "#80BC50",
-  primary200: "#B6D89A",
-  primary100: "#EBF4E3",
+  ...green,
 
-  /* border */
-  border: "#EAF0E5",
+  ...black,
+
+  ...gray,
 
   /* input */
   input: "#bec3cf",
-  inputBackground: "#f6f8fc",
 
   /* background */
-  background: "#f5f5f5",
+  background: "#f1f3f5",
 };

@@ -1,4 +1,3 @@
-import { COLOR } from "@theme/color";
 import { StyleSheet, Text, View } from "react-native";
 
 export default ({ containerStyle, textStyle, title }) => {
@@ -16,6 +15,8 @@ const styles = StyleSheet.create({
   },
   helperText: {
     fontSize: 12,
-    color: COLOR.input,
+    color: "#a9afb3",
+    // color: "#ced3d6",
+    // color: COLOR.input,
   },
 });

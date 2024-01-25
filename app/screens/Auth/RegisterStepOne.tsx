@@ -20,13 +20,23 @@ export default () => {
     return signname.length >= 6 && signname.length <= 12;
   }, [signname]);
 
-  const isEnableRequestVerify = useMemo(() => {}, [phone]);
+  const isEnableRequestVerify = useMemo(() => {
+    // 010-1234-5678
+    return phone.length == 11;
+  }, [phone]);
 
   const isEnableVerify = useMemo(() => {
     return verificationCode.length == 6;
-  }, []);
+  }, [verificationCode]);
 
-  // const isDisableNext = useMemo(() => {}, []);
+  const isDisableNext = useMemo(() => {
+    return (
+      signname.length >= 6 &&
+      signname.length <= 12 &&
+      phone.length == 11 &&
+      verificationCode.length == 6
+    );
+  }, [signname, phone, verificationCode]);
 
   return (
     <DefaultLayout>
@@ -49,12 +59,22 @@ export default () => {
 
               <Button
                 title="중복 확인"
-                containerStyle={styles.button}
-                textStyle={{ fontSize: 14, color: "white" }}
+                containerStyle={
+                  isEnableDuplicate
+                    ? styles.activeButton
+                    : styles.deactiveButton
+                }
+                textStyle={
+                  isEnableDuplicate ? styles.activeText : styles.deactiveText
+                }
               />
             </View>
             <HelperText
-              title="아이디는 6자 이상 12자 이하로 입력해주세요."
+              title={
+                isEnableDuplicate
+                  ? ""
+                  : `아이디는 6자 이상 12자 이하로 입력해주세요.`
+              }
               containerStyle={""}
               textStyle={""}
             />
@@ -64,20 +84,32 @@ export default () => {
             <View style={styles.row}>
               <View style={{ flex: 1 }}>
                 <Input
-                  keyboardType="number-pad"
+                  keyboardType="numeric" // 키보드를 숫자 전용으로 설정
                   containerStyle={{ flex: 1 }}
                   placeholder="전화번호를 입력해주세요."
                   value={phone}
-                  onChangeText={(v: any) => setPhone(v)}
+                  onChangeText={(v: any) => {
+                    if (!isNaN(Number(v)) && isFinite(v)) {
+                      setPhone(v);
+                    }
+                  }}
                 />
               </View>
               <Button
                 title="인증번호 발송"
-                containerStyle={styles.button}
-                textStyle={{ fontSize: 14, color: "white" }}
+                containerStyle={
+                  isEnableRequestVerify
+                    ? styles.activeButton
+                    : styles.deactiveButton
+                }
+                textStyle={
+                  isEnableRequestVerify
+                    ? styles.activeText
+                    : styles.deactiveText
+                }
               />
             </View>
-            {/* <Text style={styles.successText}>성공 문구</Text> */}
+            <HelperText title={"테스트"} containerStyle={""} textStyle={""} />
           </View>
 
           <View style={styles.stack}>
@@ -92,10 +124,16 @@ export default () => {
               </View>
               <Button
                 title="인증번호 확인"
-                containerStyle={styles.button}
-                textStyle={{ fontSize: 14, color: "white" }}
+                containerStyle={
+                  isEnableVerify ? styles.activeButton : styles.deactiveButton
+                }
+                textStyle={
+                  isEnableVerify ? styles.activeText : styles.deactiveText
+                }
               />
             </View>
+
+            <HelperText title={"테스트"} containerStyle={""} textStyle={""} />
           </View>
 
           <Input
@@ -120,7 +158,7 @@ export default () => {
             title="회원가입"
             containerStyle={{
               width: "100%",
-              backgroundColor: COLOR.primary500,
+              backgroundColor: COLOR.green,
               marginBottom: 20,
             }}
             textStyle={{
@@ -139,7 +177,7 @@ export default () => {
             <Button
               title="로그인"
               containerStyle={{}}
-              textStyle={{ color: COLOR.primary700 }}
+              textStyle={{ color: COLOR.greenDark }}
               onPress={() => {
                 navigation.navigate("Login");
               }}
@@ -170,21 +208,30 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
   },
-  button: {
-    backgroundColor: COLOR.primary500,
+  activeButton: {
+    backgroundColor: COLOR.green,
     width: "28%",
     marginLeft: 10,
   },
+  deactiveButton: {
+    borderColor: COLOR.grayLight,
+    borderWidth: 1,
+    backgroundColor: COLOR.background,
+    width: "28%",
+    marginLeft: 10,
+  },
+  activeText: {
+    fontSize: 14,
+    color: "white",
+  },
+  deactiveText: {
+    fontSize: 14,
+    color: COLOR.blackLight,
+  },
   errorText: {
-    fontSize: 12,
     color: "#DB4749",
-    marginTop: 2,
-    marginLeft: 5,
   },
   successText: {
-    fontSize: 12,
     color: "#0081CE",
-    marginTop: 2,
-    marginLeft: 5,
   },
 });

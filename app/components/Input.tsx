@@ -14,7 +14,8 @@ export default ({ containerStyle, textStyle, ...props }: IInput, ref: any) => {
       <TextInput
         ref={ref}
         style={[styles.input, textStyle]}
-        placeholderTextColor="#bec3cf"
+        placeholderTextColor="#ced3d6"
+        // placeholderTextColor="#bec3cf"
         {...props}
       />
     </View>
@@ -24,7 +25,8 @@ export default ({ containerStyle, textStyle, ...props }: IInput, ref: any) => {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
-    borderColor: COLOR.border,
+    borderColor: COLOR.grayLight,
+    // borderColor: "#ced3d6",
     borderWidth: 1,
     paddingVertical: 4,
     paddingHorizontal: 8,

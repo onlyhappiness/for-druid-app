@@ -1,11 +1,36 @@
 import { Modal, Text, View } from "react-native";
 
 // https://reactnative.dev/docs/modal
-export default ({ open }) => {
+interface IModal {
+  open: boolean;
+  icon?: any;
+  title: string;
+  content: string;
+  submit: any;
+  onSubmit?: any;
+  cancel?: any;
+  onCancel?: any;
+}
+
+export default ({
+  open,
+  icon,
+  title,
+  content,
+  submit,
+  onSubmit,
+  cancel,
+  onCancel,
+}: IModal) => {
   return (
     <Modal visible={open} transparent={true} animationType="fade">
       <View>
-        <Text>나와</Text>
+        {icon}
+        <Text>{title}</Text>
+        <Text>{content}</Text>
+
+        <View>{submit}</View>
+        <View>{cancel}</View>
       </View>
     </Modal>
   );
