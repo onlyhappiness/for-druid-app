@@ -4,15 +4,16 @@ import Input from "@components/Input";
 import DefaultLayout from "@layouts/DefaultLayout";
 import { useNavigation } from "@react-navigation/native";
 import { COLOR } from "@theme/color";
+import { FONT } from "@theme/typography";
 import { useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default () => {
   const navigation = useNavigation<any>();
 
-  const [signname, setSignname] = useState("");
   const [phone, setPhone] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
+  const [signname, setSignname] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
 
@@ -38,15 +39,33 @@ export default () => {
     );
   }, [signname, phone, verificationCode]);
 
+  const onPressNext = () => {
+    navigation.navigate("RegisterStepTwo");
+  };
+
   return (
-    <DefaultLayout>
+    <DefaultLayout
+      extraChildren={
+        <View style={{ paddingHorizontal: 20 }}>
+          <Button
+            title="회원가입"
+            containerStyle={styles.bottomButton}
+            textStyle={styles.bottomButtonText}
+            onPress={() => onPressNext()}
+          />
+        </View>
+      }
+    >
       <ScrollView>
         <View style={styles.container}>
           <View style={{ paddingTop: 60, marginBottom: 40 }}>
-            <Text>회원가입</Text>
+            <Text style={{ fontSize: FONT.h3 }}>사용하실 아이디를</Text>
+            <Text style={{ marginTop: 12, fontSize: FONT.h3 }}>
+              입력해주세요
+            </Text>
           </View>
 
-          <View style={styles.stack}>
+          <View>
             <View style={styles.row}>
               <View style={{ flex: 1 }}>
                 <Input
@@ -61,14 +80,22 @@ export default () => {
                 title="중복 확인"
                 containerStyle={
                   isEnableDuplicate
-                    ? styles.activeButton
-                    : styles.deactiveButton
+                    ? [styles.button, styles.activeButton]
+                    : [styles.button, styles.deactiveButton]
                 }
                 textStyle={
-                  isEnableDuplicate ? styles.activeText : styles.deactiveText
+                  isEnableDuplicate
+                    ? [styles.buttonText, { color: "white" }]
+                    : [
+                        styles.buttonText,
+                        {
+                          color: COLOR.blackLight,
+                        },
+                      ]
                 }
               />
             </View>
+
             <HelperText
               title={
                 isEnableDuplicate
@@ -80,7 +107,7 @@ export default () => {
             />
           </View>
 
-          <View style={styles.stack}>
+          {/* <View style={styles.stack}>
             <View style={styles.row}>
               <View style={{ flex: 1 }}>
                 <Input
@@ -110,9 +137,9 @@ export default () => {
               />
             </View>
             <HelperText title={"테스트"} containerStyle={""} textStyle={""} />
-          </View>
+          </View> */}
 
-          <View style={styles.stack}>
+          {/* <View style={styles.stack}>
             <View style={styles.row}>
               <View style={{ flex: 1 }}>
                 <Input
@@ -134,9 +161,9 @@ export default () => {
             </View>
 
             <HelperText title={"테스트"} containerStyle={""} textStyle={""} />
-          </View>
+          </View> */}
 
-          <Input
+          {/* <Input
             containerStyle={{
               flex: 1,
               width: "100%",
@@ -145,29 +172,16 @@ export default () => {
             placeholder="비밀번호를 입력해주세요."
             value={password}
             onChangeText={(v: any) => setPassword(v)}
-          />
+          /> */}
 
-          <Input
+          {/* <Input
             containerStyle={{ width: "100%", marginBottom: 40 }}
             placeholder="비밀번호를 한번 더 입력해주세요."
             value={rePassword}
             onChangeText={(v: any) => setRePassword(v)}
-          />
+          /> */}
 
-          <Button
-            title="회원가입"
-            containerStyle={{
-              width: "100%",
-              backgroundColor: COLOR.green,
-              marginBottom: 20,
-            }}
-            textStyle={{
-              color: "white",
-              fontSize: 16,
-            }}
-          />
-
-          <View
+          {/* <View
             style={{
               flexDirection: "row",
               alignItems: "center",
@@ -182,7 +196,7 @@ export default () => {
                 navigation.navigate("Login");
               }}
             />
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </DefaultLayout>
@@ -193,11 +207,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
     paddingHorizontal: 20,
-  },
-  stack: {
-    marginBottom: 20,
   },
   row: {
     flexDirection: "row",
@@ -205,33 +215,37 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "flex-start",
   },
-  input: {
-    width: "100%",
+
+  button: {
+    width: "28%",
+    marginLeft: 10,
   },
   activeButton: {
     backgroundColor: COLOR.green,
-    width: "28%",
-    marginLeft: 10,
   },
   deactiveButton: {
-    borderColor: COLOR.grayLight,
     borderWidth: 1,
+    borderColor: COLOR.grayLight,
     backgroundColor: COLOR.background,
-    width: "28%",
-    marginLeft: 10,
   },
-  activeText: {
-    fontSize: 14,
-    color: "white",
-  },
-  deactiveText: {
-    fontSize: 14,
-    color: COLOR.blackLight,
+
+  buttonText: {
+    fontSize: FONT.base,
   },
   errorText: {
     color: "#DB4749",
   },
   successText: {
     color: "#0081CE",
+  },
+
+  bottomButton: {
+    width: "100%",
+    backgroundColor: COLOR.green,
+    marginBottom: 20,
+  },
+  bottomButtonText: {
+    color: "white",
+    fontSize: 16,
   },
 });

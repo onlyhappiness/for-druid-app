@@ -8,10 +8,10 @@ interface IDefaultLayout {
 }
 
 export default ({ children, extraChildren }: IDefaultLayout) => {
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
 
   return (
-    <View style={styles.layout}>
+    <View style={[styles.layout]}>
       <View style={[styles.container, { paddingTop: top }]}>{children}</View>
       {extraChildren}
     </View>
