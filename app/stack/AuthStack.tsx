@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import RegisterStepThree from "@screens/Auth/RegisterStepThree";
 import RegisterStepTwo from "@screens/Auth/RegisterStepTwo";
 import { useMemo } from "react";
 import Login from "../screens/Auth/Login";
@@ -12,6 +13,7 @@ export default () => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="RegisterStepOne" component={RegisterStepOne} />
       <Stack.Screen name="RegisterStepTwo" component={RegisterStepTwo} />
+      <Stack.Screen name="RegisterStepThree" component={RegisterStepThree} />
     </Stack.Navigator>
   );
 };
