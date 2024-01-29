@@ -1,16 +1,23 @@
 import Button from "@components/Button";
 import Input from "@components/Input";
-import DefaultLayout from "@layouts/DefaultLayout";
+import AuthLayout from "@layouts/AuthLayout";
 import { COLOR } from "@theme/color";
 import { FONT } from "@theme/typography";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default () => {
   const [phone, setPhone] = useState("");
 
+  const isEnableRequestVerify = useMemo(() => {
+    // 010-1234-5678
+    return phone.length == 11;
+  }, [phone]);
+
   return (
-    <DefaultLayout
+    <AuthLayout
+      title=""
+      isBackButton={true}
       extraChildren={
         <View style={{ paddingHorizontal: 20 }}>
           <Button
@@ -43,7 +50,7 @@ export default () => {
           />
         </View>
       </ScrollView>
-    </DefaultLayout>
+    </AuthLayout>
   );
 };
 

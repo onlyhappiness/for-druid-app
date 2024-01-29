@@ -17,7 +17,6 @@ const black = {
 };
 
 export const COLOR = {
-  /* primary color */
   ...green,
 
   ...black,

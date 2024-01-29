@@ -1,7 +1,9 @@
+import { postCheckSignname } from "@api/apis/user";
 import Button from "@components/Button";
 import HelperText from "@components/HelperText";
 import Input from "@components/Input";
-import DefaultLayout from "@layouts/DefaultLayout";
+import Modal from "@components/Modal";
+import AuthLayout from "@layouts/AuthLayout";
 import { useNavigation } from "@react-navigation/native";
 import { COLOR } from "@theme/color";
 import { FONT } from "@theme/typography";
@@ -13,50 +15,55 @@ export default () => {
 
   const [signname, setSignname] = useState("");
 
+  const [isDuplicateOpen, setIsDuplicateOpen] = useState<any>(null);
+
   const isEnableDuplicate = useMemo(() => {
     return signname.length >= 6 && signname.length <= 12;
   }, [signname]);
 
-  // const isEnableRequestVerify = useMemo(() => {
-  //   // 010-1234-5678
-  //   return phone.length == 11;
-  // }, [phone]);
+  const handleDuplicateSigname = (signname: string) => {
+    // setIsDuplicateOpen(true);
 
-  // const isEnableVerify = useMemo(() => {
-  //   return verificationCode.length == 6;
-  // }, [verificationCode]);
-
-  // const isDisableNext = useMemo(() => {
-  //   return (
-  //     signname.length >= 6 &&
-  //     signname.length <= 12 &&
-  //     phone.length == 11 &&
-  //     verificationCode.length == 6
-  //   );
-  // }, [signname, phone, verificationCode]);
+    const body = {
+      signname: signname,
+    };
+    postCheckSignname(body);
+  };
 
   const onPressNext = () => {
     navigation.navigate("RegisterStepTwo");
   };
 
   return (
-    <DefaultLayout
+    <AuthLayout
+      title=""
+      isBackButton={true}
       extraChildren={
-        <View style={{ paddingHorizontal: 20 }}>
-          <Button
-            title="다음"
-            containerStyle={styles.bottomButton}
-            textStyle={styles.bottomButtonText}
-            onPress={() => onPressNext()}
+        <>
+          <View style={{ paddingHorizontal: 20 }}>
+            <Button
+              title="다음"
+              containerStyle={styles.bottomButton}
+              textStyle={styles.bottomButtonText}
+              onPress={() => onPressNext()}
+              accessibilityLabel="다음으로 이동합니다."
+            />
+          </View>
+          <Modal
+            open={isDuplicateOpen}
+            content="테스트입니다."
+            onConfirm={() => {
+              setIsDuplicateOpen(false);
+            }}
           />
-        </View>
+        </>
       }
     >
       <ScrollView>
         <View style={styles.container}>
-          <View style={{ paddingTop: 60, marginBottom: 40 }}>
+          <View style={{ paddingTop: 50, marginBottom: 40 }}>
             <Text style={{ fontSize: FONT.h3 }}>사용하실 아이디를</Text>
-            <Text style={{ marginTop: 12, fontSize: FONT.h3 }}>
+            <Text style={{ marginTop: 14, fontSize: FONT.h3 }}>
               입력해주세요
             </Text>
           </View>
@@ -65,7 +72,7 @@ export default () => {
             <View style={styles.row}>
               <View style={{ flex: 1 }}>
                 <Input
-                  containerStyle={[{ flex: 1 }]}
+                  containerStyle={{ flex: 1 }}
                   placeholder="아이디를 입력해주세요."
                   value={signname}
                   onChangeText={(v: any) => setSignname(v)}
@@ -74,6 +81,9 @@ export default () => {
 
               <Button
                 title="중복 확인"
+                onPress={() => {
+                  isEnableDuplicate ? handleDuplicateSigname(signname) : null;
+                }}
                 containerStyle={
                   isEnableDuplicate
                     ? [styles.button, styles.activeButton]
@@ -104,7 +114,7 @@ export default () => {
           </View>
         </View>
       </ScrollView>
-    </DefaultLayout>
+    </AuthLayout>
   );
 };
 
