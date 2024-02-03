@@ -1,9 +1,9 @@
-import Button from "@components/Button";
-import Input from "@components/Input";
-import AuthLayout from "@layouts/AuthLayout";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import AuthLayout from "@/layouts/AuthLayout";
+import { COLOR } from "@/theme/color";
+import { FONT } from "@/theme/typography";
 import { useNavigation } from "@react-navigation/native";
-import { COLOR } from "@theme/color";
-import { FONT } from "@theme/typography";
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 

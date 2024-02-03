@@ -1,16 +1,19 @@
-import { postCheckSignname } from "@api/apis/user";
-import Button from "@components/Button";
-import HelperText from "@components/HelperText";
-import Input from "@components/Input";
-import Modal from "@components/Modal";
-import AuthLayout from "@layouts/AuthLayout";
+import { usePostCheckSignname } from "@/api/query/user/usePostCheckSignname";
+import Button from "@/components/Button";
+import HelperText from "@/components/HelperText";
+import Input from "@/components/Input";
+import Modal from "@/components/Modal";
+import AuthLayout from "@/layouts/AuthLayout";
+import { COLOR } from "@/theme/color";
+import { FONT } from "@/theme/typography";
 import { useNavigation } from "@react-navigation/native";
-import { COLOR } from "@theme/color";
-import { FONT } from "@theme/typography";
 import { useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default () => {
+  const { bottom } = useSafeAreaInsets();
+
   const navigation = useNavigation<any>();
 
   const [signname, setSignname] = useState("");
@@ -21,13 +24,15 @@ export default () => {
     return signname.length >= 6 && signname.length <= 12;
   }, [signname]);
 
-  const handleDuplicateSigname = (signname: string) => {
-    // setIsDuplicateOpen(true);
+  // const { mutate } = usePostCheckSignname();
+  const checkSignname = usePostCheckSignname();
 
+  const handleDuplicateSigname = async (signname: string) => {
     const body = {
       signname: signname,
     };
-    postCheckSignname(body);
+
+    await checkSignname.mutateAsync(body);
   };
 
   const onPressNext = () => {
@@ -40,7 +45,12 @@ export default () => {
       isBackButton={true}
       extraChildren={
         <>
-          <View style={{ paddingHorizontal: 20 }}>
+          <View
+            style={{
+              paddingHorizontal: 20,
+              paddingBottom: bottom === 0 ? 20 : bottom,
+            }}
+          >
             <Button
               title="다음"
               containerStyle={styles.bottomButton}

@@ -1,7 +1,7 @@
+import { COLOR } from "@/theme/color";
+import { ICON } from "@/theme/icon";
+import { FONT } from "@/theme/typography";
 import { useNavigation } from "@react-navigation/native";
-import { COLOR } from "@theme/color";
-import { ICON } from "@theme/icon";
-import { FONT } from "@theme/typography";
 import { ReactNode } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";

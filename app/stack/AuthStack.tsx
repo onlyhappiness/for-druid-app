@@ -1,6 +1,6 @@
+import RegisterStepThree from "@/screens/Auth/RegisterStepThree";
+import RegisterStepTwo from "@/screens/Auth/RegisterStepTwo";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import RegisterStepThree from "@screens/Auth/RegisterStepThree";
-import RegisterStepTwo from "@screens/Auth/RegisterStepTwo";
 import { useMemo } from "react";
 import Login from "../screens/Auth/Login";
 import RegisterStepOne from "../screens/Auth/RegisterStepOne";

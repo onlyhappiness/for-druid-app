@@ -1,8 +1,8 @@
-import Button from "@components/Button";
-import Input from "@components/Input";
-import AuthLayout from "@layouts/AuthLayout";
-import { COLOR } from "@theme/color";
-import { FONT } from "@theme/typography";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import AuthLayout from "@/layouts/AuthLayout";
+import { COLOR } from "@/theme/color";
+import { FONT } from "@/theme/typography";
 import { useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 

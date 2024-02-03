@@ -1,5 +1,5 @@
-import { COLOR } from "@theme/color";
-import { FONT } from "@theme/typography";
+import { COLOR } from "@/theme/color";
+import { FONT } from "@/theme/typography";
 import { Modal, StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
 

@@ -1,5 +1,5 @@
 // https://reactnative.dev/docs/textinput
-import { COLOR } from "@theme/color";
+import { COLOR } from "@/theme/color";
 import React from "react";
 import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 

@@ -1,7 +1,7 @@
-import Button from "@components/Button";
-import Input from "@components/Input";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import { COLOR } from "@/theme/color";
 import { useNavigation } from "@react-navigation/native";
-import { COLOR } from "@theme/color";
 import { useState } from "react";
 import {
   Keyboard,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   logo: {
     height: 50,
     justifyContent: "center",
-    marginBottom: 50,
+    marginVertical: 50,
     backgroundColor: COLOR.green,
   },
   loginButton: {
