@@ -18,7 +18,7 @@ export default ({
   isBackButton = false,
   rightButton,
 }: Props) => {
-  const { top, bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
 
   return (
     <View style={styles.layout}>

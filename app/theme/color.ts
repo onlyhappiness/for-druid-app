@@ -16,11 +16,23 @@ const black = {
   blackDark: "#292a2b",
 };
 
+const red = {
+  redLight: "#ff8e89",
+  red: "#ff5d5d",
+  redDark: "#f24147",
+};
+
+const blue = {
+  blueLight: "#87b1f3",
+  blue: "#4c80f1",
+  blueDark: "#2c5ae9",
+};
+
 export const COLOR = {
+  ...red,
+  ...blue,
   ...green,
-
   ...black,
-
   ...gray,
 
   /* input */

@@ -15,6 +15,8 @@ export default ({ containerStyle, textStyle, ...props }: IInput, ref: any) => {
         ref={ref}
         style={[styles.input, textStyle]}
         placeholderTextColor="#ced3d6"
+        autoCapitalize="none" // 자동 대문자 변환 비활성화
+        autoCorrect={false} // 자동 수정 기능 비활성화
         // placeholderTextColor="#bec3cf"
         {...props}
       />

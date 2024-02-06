@@ -1,6 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
 
-export default ({ containerStyle, textStyle, title }) => {
+interface Props {
+  containerStyle?: ViewStyle;
+  textStyle?: TextStyle;
+  title: string;
+}
+
+export default ({ containerStyle, textStyle, title }: Props) => {
   return (
     <View style={[styles.container, containerStyle]}>
       <Text style={[styles.helperText, textStyle]}>{title}</Text>
@@ -16,7 +22,5 @@ const styles = StyleSheet.create({
   helperText: {
     fontSize: 12,
     color: "#a9afb3",
-    // color: "#ced3d6",
-    // color: COLOR.input,
   },
 });

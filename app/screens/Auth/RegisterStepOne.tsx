@@ -7,7 +7,7 @@ import AuthLayout from "@/layouts/AuthLayout";
 import { COLOR } from "@/theme/color";
 import { FONT } from "@/theme/typography";
 import { useNavigation } from "@react-navigation/native";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -16,28 +16,41 @@ export default () => {
 
   const navigation = useNavigation<any>();
 
+  const type = "SIGNNAME";
   const [signname, setSignname] = useState("");
 
-  const [isDuplicateOpen, setIsDuplicateOpen] = useState<any>(null);
+  const [isCheckSignname, setIsCheckSigname] = useState(false);
+  const [isDuplicateOpen, setIsDuplicateOpen] = useState(false);
 
-  const isEnableDuplicate = useMemo(() => {
+  const signnameValidation = useMemo(() => {
     return signname.length >= 6 && signname.length <= 12;
   }, [signname]);
 
-  // const { mutate } = usePostCheckSignname();
-  const checkSignname = usePostCheckSignname();
+  const checkSignname = usePostCheckSignname({
+    setModalOpen: setIsDuplicateOpen,
+    isCheck: setIsCheckSigname,
+  });
 
   const handleDuplicateSigname = async (signname: string) => {
-    const body = {
-      signname: signname,
-    };
+    const body = { signname: signname };
 
     await checkSignname.mutateAsync(body);
   };
 
   const onPressNext = () => {
-    navigation.navigate("RegisterStepTwo");
+    navigation.navigate("RegisterStepTwo", {
+      data: {
+        type,
+        signname,
+      },
+    });
   };
+
+  useEffect(() => {
+    if (!signnameValidation) {
+      setIsCheckSigname(false);
+    }
+  }, [signnameValidation]);
 
   return (
     <AuthLayout
@@ -53,15 +66,25 @@ export default () => {
           >
             <Button
               title="다음"
-              containerStyle={styles.bottomButton}
-              textStyle={styles.bottomButtonText}
-              onPress={() => onPressNext()}
+              containerStyle={
+                signnameValidation && isCheckSignname
+                  ? [styles.bottomButton, { backgroundColor: COLOR.green }]
+                  : [styles.bottomButton, { backgroundColor: COLOR.background }]
+              }
+              textStyle={
+                signnameValidation && isCheckSignname
+                  ? [styles.buttonText, { color: "white" }]
+                  : [styles.buttonText, { color: COLOR.blackLight }]
+              }
+              onPress={() => {
+                signnameValidation && isCheckSignname ? onPressNext() : null;
+              }}
               accessibilityLabel="다음으로 이동합니다."
             />
           </View>
           <Modal
             open={isDuplicateOpen}
-            content="테스트입니다."
+            content="이미 사용중인 아이디입니다."
             onConfirm={() => {
               setIsDuplicateOpen(false);
             }}
@@ -85,41 +108,46 @@ export default () => {
                   containerStyle={{ flex: 1 }}
                   placeholder="아이디를 입력해주세요."
                   value={signname}
-                  onChangeText={(v: any) => setSignname(v)}
+                  onChangeText={(v: string) => setSignname(v)}
                 />
               </View>
 
               <Button
                 title="중복 확인"
                 onPress={() => {
-                  isEnableDuplicate ? handleDuplicateSigname(signname) : null;
+                  signnameValidation ? handleDuplicateSigname(signname) : null;
                 }}
                 containerStyle={
-                  isEnableDuplicate
+                  signnameValidation
                     ? [styles.button, styles.activeButton]
                     : [styles.button, styles.deactiveButton]
                 }
                 textStyle={
-                  isEnableDuplicate
+                  signnameValidation
                     ? [styles.buttonText, { color: "white" }]
-                    : [
-                        styles.buttonText,
-                        {
-                          color: COLOR.blackLight,
-                        },
-                      ]
+                    : [styles.buttonText, { color: COLOR.blackLight }]
                 }
               />
             </View>
 
             <HelperText
               title={
-                isEnableDuplicate
-                  ? ""
+                signnameValidation
+                  ? isDuplicateOpen
+                    ? "이미 사용중인 아이디입니다."
+                    : isCheckSignname
+                    ? "사용 가능한 아이디입니다."
+                    : ""
                   : `아이디는 6자 이상 12자 이하로 입력해주세요.`
               }
-              containerStyle={""}
-              textStyle={""}
+              containerStyle={{}}
+              textStyle={
+                isDuplicateOpen
+                  ? styles.errorText
+                  : isCheckSignname
+                  ? styles.successText
+                  : {}
+              }
             />
           </View>
         </View>
@@ -158,19 +186,16 @@ const styles = StyleSheet.create({
     fontSize: FONT.base,
   },
   errorText: {
-    color: "#DB4749",
+    // color: "#DB4749",
+    color: COLOR.red,
   },
   successText: {
-    color: "#0081CE",
+    // color: "#0081CE",
+    color: COLOR.blue,
   },
 
   bottomButton: {
     width: "100%",
-    backgroundColor: COLOR.green,
     marginBottom: 20,
-  },
-  bottomButtonText: {
-    color: "white",
-    fontSize: FONT.base,
   },
 });
