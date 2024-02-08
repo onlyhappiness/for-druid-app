@@ -15,7 +15,7 @@ export const usePostCheckSignname = ({
       isCheck(true);
     },
     onError: (err) => {
-      console.log("err:::", err);
+      // console.log("err:::", err);
       setModalOpen(true);
     },
   });

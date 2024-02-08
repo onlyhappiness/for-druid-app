@@ -12,14 +12,15 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default () => {
-  const { bottom } = useSafeAreaInsets();
-
   const navigation = useNavigation<any>();
 
   const type = "SIGNNAME";
   const [signname, setSignname] = useState("");
 
+  // 중복 체크에 대한 상태값
   const [isCheckSignname, setIsCheckSigname] = useState(false);
+
+  // Modal open
   const [isDuplicateOpen, setIsDuplicateOpen] = useState(false);
 
   const signnameValidation = useMemo(() => {
@@ -58,30 +59,12 @@ export default () => {
       isBackButton={true}
       extraChildren={
         <>
-          <View
-            style={{
-              paddingHorizontal: 20,
-              paddingBottom: bottom === 0 ? 20 : bottom,
-            }}
-          >
-            <Button
-              title="다음"
-              containerStyle={
-                signnameValidation && isCheckSignname
-                  ? [styles.bottomButton, { backgroundColor: COLOR.green }]
-                  : [styles.bottomButton, { backgroundColor: COLOR.background }]
-              }
-              textStyle={
-                signnameValidation && isCheckSignname
-                  ? [styles.buttonText, { color: "white" }]
-                  : [styles.buttonText, { color: COLOR.blackLight }]
-              }
-              onPress={() => {
-                signnameValidation && isCheckSignname ? onPressNext() : null;
-              }}
-              accessibilityLabel="다음으로 이동합니다."
-            />
-          </View>
+          <BottomButton
+            signnameValidation={signnameValidation}
+            isCheckSignname={isCheckSignname}
+            onPressNext={onPressNext}
+          />
+
           <Modal
             open={isDuplicateOpen}
             content="이미 사용중인 아이디입니다."
@@ -156,6 +139,52 @@ export default () => {
   );
 };
 
+/**
+ * @description Bottom Button
+ *
+ * @param signnameValidation  signname 길이
+ * @param isCheckSignname     중복 체크 상태값
+ * @param onPressNext         클릭함수
+ */
+const BottomButton = ({
+  signnameValidation,
+  isCheckSignname,
+  onPressNext,
+}: {
+  signnameValidation: boolean;
+  isCheckSignname: boolean;
+  onPressNext: () => void;
+}) => {
+  const { bottom } = useSafeAreaInsets();
+
+  return (
+    <View
+      style={{
+        paddingHorizontal: 20,
+        paddingBottom: bottom === 0 ? 20 : bottom,
+      }}
+    >
+      <Button
+        title="다음"
+        containerStyle={
+          signnameValidation && isCheckSignname
+            ? [styles.bottomButton, { backgroundColor: COLOR.green }]
+            : [styles.bottomButton, { backgroundColor: COLOR.background }]
+        }
+        textStyle={
+          signnameValidation && isCheckSignname
+            ? [styles.buttonText, { color: "white" }]
+            : [styles.buttonText, { color: COLOR.blackLight }]
+        }
+        onPress={() => {
+          signnameValidation && isCheckSignname ? onPressNext() : null;
+        }}
+        accessibilityLabel="다음으로 이동합니다."
+      />
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -186,11 +215,9 @@ const styles = StyleSheet.create({
     fontSize: FONT.base,
   },
   errorText: {
-    // color: "#DB4749",
     color: COLOR.red,
   },
   successText: {
-    // color: "#0081CE",
     color: COLOR.blue,
   },
 

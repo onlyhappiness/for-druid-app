@@ -4,7 +4,7 @@ import api from "..";
 
 const BASE_URL = "/user";
 
-// 이메일 중복체크
+// post 이메일 중복체크
 export const postCheckEmail = async (body: any) => {
   await makeRequest({
     method: "POST",
@@ -13,21 +13,22 @@ export const postCheckEmail = async (body: any) => {
   });
 };
 
-// 아이디 중복체크
+// post 아이디 중복체크
 export const postCheckSignname = async (body?: IPostCheckSignname) => {
   try {
-    const res = await api.post(`${BASE_URL}/check-signname`, body);
-    return res.data.data;
+    const { data } = await api.post(`/user/check-signname`, body);
+    return data.data;
   } catch (error) {
     throw error;
   }
 };
 
-// 전화번호 체크
+// post 전화번호 체크
 export const postCheckPhone = async (body: any) => {
-  await makeRequest({
-    method: "POST",
-    path: `${BASE_URL}/check-phone`,
-    body: body,
-  });
+  try {
+    const { data } = await api.post(`/user/check-phone`, body);
+    return data.data;
+  } catch (error) {
+    throw error;
+  }
 };
