@@ -11,7 +11,7 @@ const usePostRequestSMS = () => {
     onError: (err) => {
       const { data }: any = (err as AxiosError).response;
 
-      console.log("errorResponse", data);
+      console.log("인증코드 전송 실패", data);
     },
   });
 };

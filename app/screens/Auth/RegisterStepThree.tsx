@@ -23,7 +23,7 @@ export default () => {
   // Modal open
   const [isDuplicateOpen, setIsDuplicateOpen] = useState(false);
 
-  const isEnableRequestVerify = useMemo(() => {
+  const phoneValidation = useMemo(() => {
     return phone.length == 11;
   }, [phone]);
 
@@ -35,6 +35,7 @@ export default () => {
     await checkPhone.mutateAsync(body);
   };
 
+  // 인증코드 전송
   const requestSMS = usePostRequestSMS();
   const handleRequestSMS = async () => {
     const body = { to: phone };
@@ -42,26 +43,23 @@ export default () => {
     await requestSMS.mutateAsync(body);
   };
 
-  const onPressNext = () => {
-    // 중복 체크
-    handleDuplicatePhone()
-      // 중복되지 않았다면 다음으로 넘어가기
-      .then(() => {
-        handleRequestSMS()
-          .then(() => {
-            const data = {
-              phone,
-              ...params.data,
-            };
-            console.log("나와::: ", data);
-          })
-          .catch((err) => {
-            console.log("sms 전송 실패");
-          });
-      })
-      .catch((err) => {
-        setIsDuplicateOpen(true);
+  const onPressNext = async () => {
+    try {
+      // 중복 체크
+      await handleDuplicatePhone();
+      // 인증코드 전송
+      await handleRequestSMS();
+
+      // 성공적으로 처리되면 다음 화면으로 네비게이션
+      navigation.navigate("RegisterStepFour", {
+        data: {
+          phone,
+          ...params.data,
+        },
       });
+    } catch (error) {
+      setIsDuplicateOpen(true);
+    }
   };
 
   return (
@@ -79,17 +77,17 @@ export default () => {
             <Button
               title="인증번호 발송"
               containerStyle={
-                isEnableRequestVerify
+                phoneValidation
                   ? [styles.bottomButton, { backgroundColor: COLOR.green }]
                   : [styles.bottomButton, { backgroundColor: COLOR.background }]
               }
               textStyle={
-                isEnableRequestVerify
+                phoneValidation
                   ? [styles.buttonText, { color: "white" }]
                   : [styles.buttonText, { color: COLOR.blackLight }]
               }
               onPress={() => {
-                isEnableRequestVerify ? onPressNext() : null;
+                phoneValidation ? onPressNext() : null;
               }}
             />
           </View>
