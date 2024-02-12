@@ -1,5 +1,8 @@
+import usePostLogin from "@/api/query/auth/usePostLogin";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import InputPassword from "@/components/InputPassword";
+import Modal from "@/components/Modal";
 import { COLOR } from "@/theme/color";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
@@ -19,54 +22,79 @@ export default () => {
   const [signname, setSignname] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+
+  const login = usePostLogin();
+  const onSubmitLogin = async () => {
+    try {
+      const body = {
+        loginType: "SIGNNAME",
+        signname,
+        password,
+      };
+
+      await login.mutateAsync(body);
+    } catch (error) {
+      setIsErrorModalOpen(true);
+    }
+  };
+
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <ScrollView style={[styles.layout]}>
-        <View style={styles.container}>
-          <View style={styles.logo}>
-            <Text style={{}}>로고</Text>
+    <>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <ScrollView style={[styles.layout]}>
+          <View style={styles.container}>
+            <View style={styles.logo}>
+              <Text style={{}}>로고</Text>
+            </View>
+
+            <Input
+              containerStyle={{ marginBottom: 20, width: "100%" }}
+              value={signname}
+              onChangeText={(v: any) => setSignname(v)}
+              placeholder="아이디를 입력해주세요."
+            />
+
+            <InputPassword
+              placeholder="비밀번호를 입력해주세요."
+              containerStyle={{ marginBottom: 40, width: "100%" }}
+              value={password}
+              onChangeText={(v: any) => setPassword(v)}
+              isVisible={isPasswordVisible}
+              setIsVisible={setIsPasswordVisible}
+            />
+
+            <Button
+              title="로그인"
+              containerStyle={styles.loginButton}
+              textStyle={styles.buttonText}
+              onPress={onSubmitLogin}
+            />
+
+            <View style={styles.buttonContainer}>
+              <Text style={{ marginRight: 6, fontSize: 14 }}>
+                계정이 없으신가요?
+              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("RegisterStepOne");
+                }}
+                style={{ alignItems: "center" }}
+              >
+                <Text style={styles.registerText}>회원가입</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-
-          <Input
-            containerStyle={{ marginBottom: 20, width: "100%" }}
-            value={signname}
-            onChangeText={(v: any) => setSignname(v)}
-            placeholder="아이디"
-          />
-
-          <Input
-            secureTextEntry
-            containerStyle={{ marginBottom: 40, width: "100%" }}
-            value={password}
-            onChangeText={(v: any) => setPassword(v)}
-            placeholder="비밀번호"
-          />
-
-          <Button
-            title="로그인"
-            containerStyle={styles.loginButton}
-            textStyle={styles.buttonText}
-            onPress={() => {
-              navigation.navigate("RegisterStepOne");
-            }}
-          />
-
-          <View style={styles.buttonContainer}>
-            <Text style={{ marginRight: 6, fontSize: 14 }}>
-              계정이 없으신가요?
-            </Text>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("RegisterStepOne");
-              }}
-              style={{ alignItems: "center" }}
-            >
-              <Text style={styles.registerText}>회원가입</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
-    </TouchableWithoutFeedback>
+        </ScrollView>
+      </TouchableWithoutFeedback>
+      <Modal
+        open={isErrorModalOpen}
+        content="아이디 혹은 비밀번호를 다시 확인해주세요."
+        onConfirm={() => setIsErrorModalOpen(false)}
+      />
+    </>
   );
 };
 

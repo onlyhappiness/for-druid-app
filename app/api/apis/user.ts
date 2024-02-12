@@ -1,17 +1,7 @@
-import { makeRequest } from "@/api/makeRequest";
 import { IPostCheckSignname } from "@/types/user";
 import api from "..";
 
 const BASE_URL = "/user";
-
-// post 이메일 중복체크
-export const postCheckEmail = async (body: any) => {
-  await makeRequest({
-    method: "POST",
-    path: `${BASE_URL}/check-email`,
-    body: body,
-  });
-};
 
 // post 아이디 중복체크
 export const postCheckSignname = async (body?: IPostCheckSignname) => {

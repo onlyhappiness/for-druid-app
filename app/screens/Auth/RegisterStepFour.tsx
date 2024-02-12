@@ -56,8 +56,6 @@ export default () => {
     }
   };
 
-  console.log("codeValidation:: ", codeValidation);
-
   return (
     <AuthLayout
       title=""

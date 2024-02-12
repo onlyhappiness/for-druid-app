@@ -5,9 +5,7 @@ import { AxiosError } from "axios";
 const usePostCheckPhone = () => {
   return useMutation({
     mutationFn: postCheckPhone,
-    onSuccess: (res) => {
-      console.log("핸드폰 중복체크:::: ", res);
-    },
+    onSuccess: (res) => {},
     onError: (err) => {
       const { data }: any = (err as AxiosError).response;
 
