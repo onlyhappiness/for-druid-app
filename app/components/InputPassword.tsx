@@ -6,14 +6,16 @@ import {
   StyleSheet,
   TextInput,
   TextInputProps,
+  TextStyle,
   TouchableOpacity,
   View,
+  ViewStyle,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface IInput extends TextInputProps {
-  containerStyle?: any;
-  textStyle?: any;
+  containerStyle?: ViewStyle;
+  textStyle?: TextStyle;
   isVisible: boolean;
   setIsVisible: React.Dispatch<boolean>;
 }

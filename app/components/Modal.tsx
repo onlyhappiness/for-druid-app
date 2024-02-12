@@ -10,8 +10,8 @@ interface IModal {
   title?: string;
   content: string;
 
-  onConfirm?: any;
-  onCancel?: any;
+  onConfirm?: () => void;
+  onCancel?: () => void;
 
   confirmText?: string;
   cancelText?: string;

@@ -53,7 +53,7 @@ export default () => {
             <Input
               containerStyle={{ marginBottom: 20, width: "100%" }}
               value={signname}
-              onChangeText={(v: any) => setSignname(v)}
+              onChangeText={(v: string) => setSignname(v)}
               placeholder="아이디를 입력해주세요."
             />
 
@@ -61,7 +61,7 @@ export default () => {
               placeholder="비밀번호를 입력해주세요."
               containerStyle={{ marginBottom: 40, width: "100%" }}
               value={password}
-              onChangeText={(v: any) => setPassword(v)}
+              onChangeText={(v: string) => setPassword(v)}
               isVisible={isPasswordVisible}
               setIsVisible={setIsPasswordVisible}
             />

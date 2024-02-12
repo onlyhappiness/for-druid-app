@@ -4,13 +4,18 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { useShallow } from "zustand/react/shallow";
 
+type userState = {
+  user: any;
+  setUser: () => void;
+  clearUser: () => void;
+};
+
 const userStore = create(
-  persist<any>(
+  persist<userState>(
     (set) => ({
       user: null,
       setUser: () => {
         const { data: userInfo } = useGetLogin();
-
         set({ user: userInfo });
       },
       clearUser: async () => {

@@ -1,12 +1,12 @@
-import DefaultLayout from "@/layouts/DefaultLayout";
+import HomeLayout from "@/layouts/HomeLayout";
 import { Text, View } from "react-native";
 
 export default () => {
   return (
-    <DefaultLayout>
+    <HomeLayout>
       <View>
         <Text>프로필</Text>
       </View>
-    </DefaultLayout>
+    </HomeLayout>
   );
 };

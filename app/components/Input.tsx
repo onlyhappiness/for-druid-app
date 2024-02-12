@@ -1,11 +1,18 @@
 // https://reactnative.dev/docs/textinput
 import { COLOR } from "@/theme/color";
 import React from "react";
-import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native";
 
 interface IInput extends TextInputProps {
-  containerStyle?: any;
-  textStyle?: any;
+  containerStyle?: ViewStyle;
+  textStyle?: TextStyle;
 }
 
 export default ({ containerStyle, textStyle, ...props }: IInput, ref: any) => {
