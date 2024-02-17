@@ -1,4 +1,4 @@
-import { useUserInfo, useUserInfoActions } from "@/data/userStore";
+import { useUserInfo } from "@/data/userStore";
 import AuthStack from "@/stack/AuthStack";
 import BottomTab from "@/stack/BottomTab";
 import { NavigationContainer } from "@react-navigation/native";
@@ -6,8 +6,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useMemo } from "react";
 
 export default () => {
-  const { setUser, clearUser } = useUserInfoActions();
-
   const { user: userInfo } = useUserInfo();
 
   const Stack = useMemo(() => createNativeStackNavigator(), []);

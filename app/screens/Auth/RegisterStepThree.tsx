@@ -1,8 +1,8 @@
 import usePostCheckPhone from "@/api/query/user/usePostCheckPhone";
 import usePostRequestSMS from "@/api/query/verification/usePostRequestSMS";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
-import Modal from "@/components/Modal";
+import Button from "@/components/shared/Button";
+import Input from "@/components/shared/Input";
+import Modal from "@/components/shared/Modal";
 import AuthLayout from "@/layouts/AuthLayout";
 import { COLOR } from "@/theme/color";
 import { FONT } from "@/theme/typography";

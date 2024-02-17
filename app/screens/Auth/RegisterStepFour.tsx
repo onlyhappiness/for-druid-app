@@ -1,6 +1,6 @@
 import usePostVerifySMS from "@/api/query/verification/usePostVerifySMS";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import Button from "@/components/shared/Button";
+import Input from "@/components/shared/Input";
 import AuthLayout from "@/layouts/AuthLayout";
 import { COLOR } from "@/theme/color";
 import { FONT } from "@/theme/typography";

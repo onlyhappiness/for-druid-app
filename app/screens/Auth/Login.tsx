@@ -1,8 +1,8 @@
 import usePostLogin from "@/api/query/auth/usePostLogin";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
-import InputPassword from "@/components/InputPassword";
-import Modal from "@/components/Modal";
+import Button from "@/components/shared/Button";
+import Input from "@/components/shared/Input";
+import InputPassword from "@/components/shared/InputPassword";
+import Modal from "@/components/shared/Modal";
 import { COLOR } from "@/theme/color";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
@@ -37,6 +37,7 @@ export default () => {
 
       await login.mutateAsync(body);
     } catch (error) {
+      console.log("로그인 에러::: ", error);
       setIsErrorModalOpen(true);
     }
   };

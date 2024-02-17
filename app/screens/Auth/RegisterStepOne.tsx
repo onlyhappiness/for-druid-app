@@ -1,8 +1,8 @@
 import { usePostCheckSignname } from "@/api/query/user/usePostCheckSignname";
-import Button from "@/components/Button";
-import HelperText from "@/components/HelperText";
-import Input from "@/components/Input";
-import Modal from "@/components/Modal";
+import Button from "@/components/shared/Button";
+import HelperText from "@/components/shared/HelperText";
+import Input from "@/components/shared/Input";
+import Modal from "@/components/shared/Modal";
 import AuthLayout from "@/layouts/AuthLayout";
 import { COLOR } from "@/theme/color";
 import { FONT } from "@/theme/typography";

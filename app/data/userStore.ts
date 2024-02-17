@@ -1,4 +1,4 @@
-import useGetLogin from "@/api/query/auth/useGetLogin";
+import { getLogin } from "@/api/apis/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
@@ -14,9 +14,10 @@ const userStore = create(
   persist<userState>(
     (set) => ({
       user: null,
-      setUser: () => {
-        const { data: userInfo } = useGetLogin();
-        set({ user: userInfo });
+      setUser: async () => {
+        const user = await getLogin();
+
+        set({ user: user });
       },
       clearUser: async () => {
         set({ user: null });

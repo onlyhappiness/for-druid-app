@@ -1,6 +1,6 @@
-import Button from "@/components/Button";
-import HelperText from "@/components/HelperText";
-import InputPassword from "@/components/InputPassword";
+import Button from "@/components/shared/Button";
+import HelperText from "@/components/shared/HelperText";
+import InputPassword from "@/components/shared/InputPassword";
 import AuthLayout from "@/layouts/AuthLayout";
 import { COLOR } from "@/theme/color";
 import { FONT } from "@/theme/typography";

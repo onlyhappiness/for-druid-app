@@ -3,6 +3,7 @@ import Home from "@/screens/Home";
 import MyPage from "@/screens/MyPage";
 import Search from "@/screens/Search";
 import { COLOR } from "@/theme/color";
+import { ICON } from "@/theme/icon";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useMemo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -37,7 +38,7 @@ export default () => {
           return (
             <Icon
               name={iconname}
-              size={24}
+              size={ICON.xl}
               color={focused ? COLOR.greenDark : COLOR.blackLight}
             />
           );
