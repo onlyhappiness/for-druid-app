@@ -1,9 +1,12 @@
 import FeedCard from "@/components/feed/FeedCard";
+import ModalProvider from "@/components/modal/ModalProvider";
 import Bottom from "@/components/shared/Bottom";
 import Button from "@/components/shared/Button";
+import { useModalActions } from "@/data/modalStore";
 import { useUserInfoActions } from "@/data/userStore";
 import HomeLayout from "@/layouts/HomeLayout";
 import { COLOR } from "@/theme/color";
+import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native";
 
 const posts = [
@@ -36,10 +39,13 @@ const posts = [
 ];
 
 export default () => {
+  const navigation = useNavigation<any>();
+  const { openModal, closeModal } = useModalActions();
+
   const { clearUser } = useUserInfoActions();
 
   return (
-    <HomeLayout>
+    <HomeLayout extraChildren={<ModalProvider id={"test-modal"} />}>
       <FlatList
         data={posts}
         renderItem={FeedCard}
@@ -50,7 +56,15 @@ export default () => {
         <Button
           title="테스트"
           onPress={() => {
-            clearUser();
+            // clearUser();
+            openModal({
+              id: "test-modal",
+              content: "테스트",
+              onConfirm: () => {
+                // closeModal({ id: "test-modal" });
+                navigation.navigate("Search");
+              },
+            });
           }}
           containerStyle={{ backgroundColor: COLOR.green }}
         />

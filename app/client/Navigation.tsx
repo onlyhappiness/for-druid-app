@@ -1,5 +1,9 @@
 import { useUserInfo } from "@/data/userStore";
-import AuthStack from "@/stack/AuthStack";
+import Login from "@/screens/Auth/Login";
+import RegisterStepFour from "@/screens/Auth/RegisterStepFour";
+import RegisterStepOne from "@/screens/Auth/RegisterStepOne";
+import RegisterStepThree from "@/screens/Auth/RegisterStepThree";
+import RegisterStepTwo from "@/screens/Auth/RegisterStepTwo";
 import BottomTab from "@/stack/BottomTab";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -13,13 +17,13 @@ export default () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!userInfo ? (
-          <Stack.Screen name="Auth" component={AuthStack} />
-        ) : (
-          <>
-            <Stack.Screen name="BottomTab" component={BottomTab} />
-          </>
-        )}
+        <Stack.Screen name="BottomTab" component={BottomTab} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="RegisterStepOne" component={RegisterStepOne} />
+        <Stack.Screen name="RegisterStepTwo" component={RegisterStepTwo} />
+        <Stack.Screen name="RegisterStepThree" component={RegisterStepThree} />
+        <Stack.Screen name="RegisterStepFour" component={RegisterStepFour} />
+        {/* <Stack.Screen name="Auth" component={AuthStack} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

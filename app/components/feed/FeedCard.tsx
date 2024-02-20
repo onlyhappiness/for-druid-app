@@ -26,6 +26,10 @@ export default () => {
   );
 };
 
+/**
+ * @description 아이콘 버튼들
+ * 하트, 댓글
+ */
 const IconButtonContainer = () => {
   return (
     <View style={styles.iconContainer}>
@@ -35,6 +39,7 @@ const IconButtonContainer = () => {
           size={ICON.size}
           color={COLOR.black}
           style={{ marginRight: 4 }}
+          onPress={() => {}}
         />
         <Text>1</Text>
       </View>
