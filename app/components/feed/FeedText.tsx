@@ -1,10 +1,9 @@
 import { COLOR } from "@/theme/color";
+import { IBoard } from "@/types/board";
 import { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const text = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam iusto consectetur nisi atque eum, cum aut! Corrupti quasi maiores eius porro magni temporibus quod provident, doloribus, nam dolor autem iusto?`;
-
-const FeedText = ({ type }: { type?: string }) => {
+const FeedText = ({ item, type }: { item: IBoard; type?: string }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpanded = () => {
@@ -15,9 +14,13 @@ const FeedText = ({ type }: { type?: string }) => {
   const renderCollapsedText = () => {
     return (
       <>
-        <Text>{text.length > 80 ? text.substring(0, 80) + "..." : text}</Text>
+        <Text style={styles.content}>
+          {item?.content.length > 80
+            ? item?.content.substring(0, 80) + "..."
+            : item?.content}
+        </Text>
 
-        {text.length > 80 && (
+        {item?.content.length > 80 && (
           <TouchableOpacity style={{ marginTop: 8 }} onPress={toggleExpanded}>
             <Text style={{ color: COLOR.grayDark }}>더보기</Text>
           </TouchableOpacity>
@@ -30,7 +33,7 @@ const FeedText = ({ type }: { type?: string }) => {
   const renderExpandedText = () => {
     return (
       <>
-        <Text>{text}</Text>
+        <Text style={styles.content}>{item?.content}</Text>
         <TouchableOpacity style={{ marginTop: 8 }} onPress={toggleExpanded}>
           <Text style={{ color: COLOR.grayDark }}>접기</Text>
         </TouchableOpacity>
@@ -39,7 +42,7 @@ const FeedText = ({ type }: { type?: string }) => {
   };
 
   const detailText = () => {
-    return <Text>{text}</Text>;
+    return <Text style={styles.content}>{item?.content}</Text>;
   };
 
   return (
@@ -52,5 +55,11 @@ const FeedText = ({ type }: { type?: string }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  content: {
+    fontFamily: "Pretendard-Light",
+  },
+});
 
 export default FeedText;

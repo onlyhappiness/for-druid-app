@@ -1,10 +1,10 @@
 import { COLOR } from "@/theme/color";
-import { ICON } from "@/theme/icon";
 import { FONT } from "@/theme/typography";
+import { IUser } from "@/types/user";
 import { Image, StyleSheet, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-export default () => {
+export default ({ user }: { user: IUser }) => {
   return (
     <View style={styles.header}>
       <View
@@ -19,10 +19,10 @@ export default () => {
           }}
           style={styles.avatar}
         />
-        <Text style={{ fontSize: FONT.base }}>밥밥</Text>
+        <Text style={styles.title}>{user.signname}</Text>
       </View>
 
-      <Icon name="more-horiz" size={ICON.size} color={COLOR.black} />
+      <Icon name="more-horiz" size={24} color={COLOR.black} />
     </View>
   );
 };
@@ -40,4 +40,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginRight: 10,
   },
+  title: { fontSize: FONT.base, fontFamily: "Pretendard-SemiBold" },
 });

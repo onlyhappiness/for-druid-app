@@ -38,5 +38,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: FONT.base,
     color: COLOR.black,
+    fontFamily: "Pretendard-Regular",
   },
 });

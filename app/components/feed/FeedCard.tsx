@@ -1,14 +1,17 @@
 import { COLOR } from "@/theme/color";
 import { ICON } from "@/theme/icon";
+import { IBoard } from "@/types/board";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import FeedHeader from "../header/FeedHeader";
 import FeedText from "./FeedText";
 
-export default () => {
+export default ({ item }: { item: IBoard }) => {
+  const { User } = item;
+
   return (
     <View style={{ marginBottom: 30 }}>
-      <FeedHeader />
+      <FeedHeader user={User} />
 
       <TouchableOpacity>
         <Image
@@ -18,9 +21,9 @@ export default () => {
           style={styles.postImage}
         />
 
-        <IconButtonContainer />
+        <IconButtonContainer item={item} />
 
-        <FeedText />
+        <FeedText item={item} />
       </TouchableOpacity>
     </View>
   );
@@ -30,7 +33,11 @@ export default () => {
  * @description 아이콘 버튼들
  * 하트, 댓글
  */
-const IconButtonContainer = () => {
+const IconButtonContainer = ({ item }: { item: IBoard }) => {
+  const { likes_count, comment_count } = item;
+
+  // console.log("item: ", item);
+
   return (
     <View style={styles.iconContainer}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -41,7 +48,7 @@ const IconButtonContainer = () => {
           style={{ marginRight: 4 }}
           onPress={() => {}}
         />
-        <Text>1</Text>
+        <Text style={styles.iconTitle}>{likes_count}</Text>
       </View>
 
       <View
@@ -57,7 +64,7 @@ const IconButtonContainer = () => {
           color={"gray"}
           style={{ marginRight: 4 }}
         />
-        <Text>1</Text>
+        <Text style={styles.iconTitle}>{comment_count}</Text>
       </View>
     </View>
   );
@@ -74,5 +81,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginVertical: 8,
     flexDirection: "row",
+  },
+  iconTitle: {
+    fontFamily: "Pretendard-Light",
   },
 });

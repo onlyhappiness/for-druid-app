@@ -47,6 +47,9 @@ export default () => {
           headerShown: false,
           tabBarActiveTintColor: COLOR.greenDark,
           tabBarInactiveTintColor: COLOR.blackLight,
+          tabBarLabelStyle: {
+            fontFamily: "Pretendard-SemiBold",
+          },
 
           tabBarIcon: ({ focused, color }) => {
             let iconname = "";
