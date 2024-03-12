@@ -4,26 +4,33 @@ import { IBoard } from "@/types/board";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import FeedHeader from "../header/FeedHeader";
+import FeedDate from "./FeedDate";
 import FeedText from "./FeedText";
 
 export default ({ item }: { item: IBoard }) => {
   const { User } = item;
 
+  console.log("item:: ", item);
+
   return (
     <View style={{ marginBottom: 30 }}>
       <FeedHeader user={User} />
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
         <Image
-          source={{
-            uri: "https://i.pinimg.com/564x/12/20/05/12200579b5389850dbfe2990fd906722.jpg",
-          }}
+          source={
+            item?.User.image
+              ? { uri: item.User.image }
+              : require("@/assets/logo.png")
+          }
           style={styles.postImage}
         />
 
         <IconButtonContainer item={item} />
 
         <FeedText item={item} />
+
+        <FeedDate item={item} />
       </TouchableOpacity>
     </View>
   );

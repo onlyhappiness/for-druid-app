@@ -26,7 +26,7 @@ export default () => {
         data={boardList.map((page) => page.data).flat()}
         renderItem={({ item }) => <FeedCard item={item} />}
         keyExtractor={(item) => item?.id}
-        ItemSeparatorComponent={() => <View style={{ marginVertical: 8 }} />}
+        ItemSeparatorComponent={() => <View style={{ marginVertical: 6 }} />}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.8}
       />

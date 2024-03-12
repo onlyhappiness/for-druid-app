@@ -1,4 +1,5 @@
 import { COLOR } from "@/theme/color";
+import { FONT } from "@/theme/typography";
 import { IBoard } from "@/types/board";
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -59,6 +60,7 @@ const FeedText = ({ item, type }: { item: IBoard; type?: string }) => {
 const styles = StyleSheet.create({
   content: {
     fontFamily: "Pretendard-Light",
+    fontSize: FONT.base,
   },
 });
 

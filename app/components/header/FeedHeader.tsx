@@ -14,9 +14,9 @@ export default ({ user }: { user: IUser }) => {
         }}
       >
         <Image
-          source={{
-            uri: "https://i.pinimg.com/564x/12/20/05/12200579b5389850dbfe2990fd906722.jpg",
-          }}
+          source={
+            user.image ? { uri: user.image } : require("@/assets/logo.png")
+          }
           style={styles.avatar}
         />
         <Text style={styles.title}>{user.signname}</Text>
@@ -35,10 +35,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 45,
+    height: 45,
+    borderRadius: 45,
     marginRight: 10,
+    borderWidth: 1,
+    borderColor: COLOR.grayLight,
   },
   title: { fontSize: FONT.base, fontFamily: "Pretendard-SemiBold" },
 });

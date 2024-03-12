@@ -27,6 +27,7 @@ module.exports = {
           "@/stack": "./app/stack",
           "@/theme": "./app/theme",
           "@/types": "./app/types",
+          // "@/utils": "./app/utils",
         },
       },
     ],
