@@ -2,7 +2,7 @@ import ModalProvider from "@/components/modal/ModalProvider";
 import { useModalActions } from "@/data/modalStore";
 import { useUserInfo } from "@/data/userStore";
 import AddPost from "@/screens/AddPost";
-import Home from "@/screens/Home";
+import Home from "@/screens/feed/Home";
 import MyPage from "@/screens/MyPage";
 import Search from "@/screens/Search";
 import { COLOR } from "@/theme/color";
@@ -83,11 +83,6 @@ export default () => {
           component={Search}
           options={{ title: "검색 " }}
           listeners={({ navigation }) => ({
-            // tabPress: (e) => {
-            //   e.preventDefault();
-
-            //   console.log("userInfo: ", userInfo);
-            // },
             tabPress: navigatePath,
           })}
         />

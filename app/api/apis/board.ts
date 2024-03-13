@@ -4,9 +4,6 @@ import api from "..";
 
 // 게시글 리스트 조회
 export const getBoardList = async ({ cursor, limit }: IPagination) => {
-  console.log("cursor::: ", cursor);
-  console.log("limit:: ", limit);
-
   const { data } = await api.get(`/board`, { params: { cursor, limit } });
   return data.data;
 };
@@ -19,8 +16,8 @@ export const postBoard = async (body: IPostBoard) => {
 
 // 게시글 상세 조회
 export const getBoardDetail = async (boardId: number) => {
-  const { data } = await api.get(`/board/${boardId}`);
-  return data;
+  const data = await api.get(`/board/${boardId}`);
+  return data.data;
 };
 
 // 게시글 수정

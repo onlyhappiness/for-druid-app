@@ -11,7 +11,6 @@ export const usePostCheckSignname = ({
   return useMutation({
     mutationFn: postCheckSignname,
     onSuccess: (res) => {
-      console.log("res:::", res);
       isCheck(true);
     },
     onError: (err) => {

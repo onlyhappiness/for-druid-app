@@ -4,6 +4,7 @@ import RegisterStepFour from "@/screens/Auth/RegisterStepFour";
 import RegisterStepOne from "@/screens/Auth/RegisterStepOne";
 import RegisterStepThree from "@/screens/Auth/RegisterStepThree";
 import RegisterStepTwo from "@/screens/Auth/RegisterStepTwo";
+import FeedDetail from "@/screens/feed/FeedDetail";
 import BottomTab from "@/stack/BottomTab";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -23,6 +24,7 @@ export default () => {
         <Stack.Screen name="RegisterStepTwo" component={RegisterStepTwo} />
         <Stack.Screen name="RegisterStepThree" component={RegisterStepThree} />
         <Stack.Screen name="RegisterStepFour" component={RegisterStepFour} />
+        <Stack.Screen name="FeedDetail" component={FeedDetail} />
         {/* <Stack.Screen name="Auth" component={AuthStack} /> */}
       </Stack.Navigator>
     </NavigationContainer>

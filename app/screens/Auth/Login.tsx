@@ -3,10 +3,13 @@ import Button from "@/components/shared/Button";
 import Input from "@/components/shared/Input";
 import InputPassword from "@/components/shared/InputPassword";
 import Modal from "@/components/shared/Modal";
+import HomeLayout from "@/layouts/HomeLayout";
 import { COLOR } from "@/theme/color";
+import { FONT } from "@/theme/typography";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import {
+  Image,
   Keyboard,
   ScrollView,
   StyleSheet,
@@ -35,7 +38,9 @@ export default () => {
         password,
       };
 
-      await login.mutateAsync(body);
+      await login.mutateAsync(body).then((res) => {
+        navigation.navigate("BottomTab");
+      });
     } catch (error) {
       console.log("로그인 에러::: ", error);
       setIsErrorModalOpen(true);
@@ -45,50 +50,59 @@ export default () => {
   return (
     <>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <ScrollView style={[styles.layout]}>
-          <View style={styles.container}>
-            <View style={styles.logo}>
-              <Text style={{}}>로고</Text>
+        <HomeLayout>
+          <ScrollView style={[styles.layout]}>
+            <View style={styles.container}>
+              <Image
+                source={require("@/assets/logo.png")}
+                style={{ height: 230, marginBottom: 40 }}
+              />
+
+              <Input
+                containerStyle={{ marginBottom: 20, width: "100%" }}
+                value={signname}
+                onChangeText={(v: string) => setSignname(v)}
+                placeholder="아이디를 입력해주세요."
+              />
+
+              <InputPassword
+                placeholder="비밀번호를 입력해주세요."
+                containerStyle={{ marginBottom: 40, width: "100%" }}
+                value={password}
+                onChangeText={(v: string) => setPassword(v)}
+                isVisible={isPasswordVisible}
+                setIsVisible={setIsPasswordVisible}
+              />
+
+              <Button
+                title="로그인"
+                containerStyle={styles.loginButton}
+                textStyle={styles.buttonText}
+                onPress={onSubmitLogin}
+              />
+
+              <View style={styles.buttonContainer}>
+                <Text
+                  style={{
+                    marginRight: 6,
+                    fontSize: FONT.base,
+                    fontFamily: "Pretendard-Regular",
+                  }}
+                >
+                  계정이 없으신가요?
+                </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("RegisterStepOne");
+                  }}
+                  style={{ alignItems: "center", justifyContent: "center" }}
+                >
+                  <Text style={styles.registerText}>회원가입</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-
-            <Input
-              containerStyle={{ marginBottom: 20, width: "100%" }}
-              value={signname}
-              onChangeText={(v: string) => setSignname(v)}
-              placeholder="아이디를 입력해주세요."
-            />
-
-            <InputPassword
-              placeholder="비밀번호를 입력해주세요."
-              containerStyle={{ marginBottom: 40, width: "100%" }}
-              value={password}
-              onChangeText={(v: string) => setPassword(v)}
-              isVisible={isPasswordVisible}
-              setIsVisible={setIsPasswordVisible}
-            />
-
-            <Button
-              title="로그인"
-              containerStyle={styles.loginButton}
-              textStyle={styles.buttonText}
-              onPress={onSubmitLogin}
-            />
-
-            <View style={styles.buttonContainer}>
-              <Text style={{ marginRight: 6, fontSize: 14 }}>
-                계정이 없으신가요?
-              </Text>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("RegisterStepOne");
-                }}
-                style={{ alignItems: "center" }}
-              >
-                <Text style={styles.registerText}>회원가입</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </HomeLayout>
       </TouchableWithoutFeedback>
       <Modal
         open={isErrorModalOpen}
@@ -103,20 +117,15 @@ const styles = StyleSheet.create({
   layout: {
     flex: 1,
     backgroundColor: "white",
-    paddingTop: 100,
+    paddingTop: 30,
   },
   container: {
     flex: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
   },
-  logo: {
-    height: 50,
-    justifyContent: "center",
-    marginVertical: 50,
-    backgroundColor: COLOR.green,
-  },
+
   loginButton: {
     width: "100%",
     backgroundColor: COLOR.green,
@@ -125,14 +134,17 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 16,
+    fontFamily: "Pretendard-SemiBold",
   },
   buttonContainer: {
     flexDirection: "row",
     alignItems: "center",
-    // justifyContent: "center",
+    justifyContent: "center",
   },
   registerText: {
     color: COLOR.greenDark,
+    fontSize: 15,
+    fontFamily: "Pretendard-SemiBold",
   },
   socialContainer: {},
 });

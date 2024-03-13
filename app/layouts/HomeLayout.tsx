@@ -1,3 +1,4 @@
+import DetailHeader from "@/components/header/DetailHeader";
 import HomeHeader from "@/components/header/HomeHeader";
 import { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
@@ -7,15 +8,16 @@ interface Props {
   title?: string;
   children: ReactNode;
   extraChildren?: ReactNode;
+  detail?: boolean;
 }
 
-export default ({ title, children, extraChildren }: Props) => {
+export default ({ title, children, extraChildren, detail }: Props) => {
   const { top } = useSafeAreaInsets();
 
   return (
     <View style={styles.layout}>
       <View style={[styles.container, { paddingTop: top }]}>
-        <HomeHeader title={title} />
+        {detail ? <DetailHeader title={title} /> : <HomeHeader title={title} />}
         {children}
       </View>
       {extraChildren}
@@ -30,5 +32,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    // backgroundColor: COLOR.background,
   },
 });
