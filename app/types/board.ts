@@ -9,6 +9,7 @@ export interface IBoard {
   likes_count: number;
   comment_count: number;
   User: IUser;
+  is_like?: boolean;
 }
 
 // 게시글 생성

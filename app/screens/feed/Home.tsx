@@ -1,16 +1,10 @@
 import useGetBoardList from "@/api/query/board/useGetBoardList";
 import FeedCard from "@/components/feed/FeedCard";
-import Bottom from "@/components/shared/Bottom";
-import Button from "@/components/shared/Button";
-import { useUserInfoActions } from "@/data/userStore";
 import HomeLayout from "@/layouts/HomeLayout";
-import { COLOR } from "@/theme/color";
 import { useMemo } from "react";
 import { FlatList, View } from "react-native";
 
 export default () => {
-  const { clearUser } = useUserInfoActions();
-
   const { data, fetchNextPage, hasNextPage } = useGetBoardList({
     cursor: 0,
     limit: 10,
@@ -25,22 +19,7 @@ export default () => {
   };
 
   return (
-    <HomeLayout
-      title="Feed"
-      extraChildren={
-        <>
-          <Bottom>
-            <Button
-              title="테스트"
-              onPress={() => {
-                clearUser();
-              }}
-              containerStyle={{ backgroundColor: COLOR.green }}
-            />
-          </Bottom>
-        </>
-      }
-    >
+    <HomeLayout title="Feed">
       <FlatList
         data={boardList.map((page) => page.data).flat()}
         renderItem={({ item }) => <FeedCard item={item} type="feed" />}

@@ -15,7 +15,7 @@ export default ({ user }: { user: IUser }) => {
       >
         <Image
           source={
-            user.image ? { uri: user.image } : require("@/assets/logo.png")
+            user.image ? { uri: user.image } : require("@/assets/no-image.png")
           }
           style={styles.avatar}
         />

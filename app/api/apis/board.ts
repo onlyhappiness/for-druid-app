@@ -16,7 +16,7 @@ export const postBoard = async (body: IPostBoard) => {
 
 // 게시글 상세 조회
 export const getBoardDetail = async (boardId: number) => {
-  const data = await api.get(`/board/${boardId}`);
+  const { data } = await api.get(`/board/${boardId}`);
   return data.data;
 };
 

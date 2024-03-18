@@ -50,7 +50,7 @@ export default () => {
   return (
     <>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <HomeLayout>
+        <HomeLayout title="로그인" back>
           <ScrollView style={[styles.layout]}>
             <View style={styles.container}>
               <Image
