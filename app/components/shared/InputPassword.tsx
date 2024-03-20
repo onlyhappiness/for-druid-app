@@ -1,6 +1,6 @@
 // https://reactnative.dev/docs/textinput
 import { COLOR } from "@/theme/color";
-import { ICON } from "@/theme/icon";
+import { Eye, EyeOff } from "lucide-react-native";
 import React, { forwardRef } from "react";
 import {
   StyleSheet,
@@ -11,7 +11,6 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface IInput extends TextInputProps {
   containerStyle?: ViewStyle;
@@ -45,9 +44,11 @@ export default forwardRef(
 
         <TouchableOpacity onPress={togglePasswordVisibility}>
           {isVisible ? (
-            <Icon name="visibility-off" size={ICON.size} color={"#ced3d6"} />
+            // <Icon name="visibility-off" size={ICON.size} color={"#ced3d6"} />
+            <Eye />
           ) : (
-            <Icon name="visibility" size={ICON.size} color={"#ced3d6"} />
+            // <Icon name="visibility" size={ICON.size} color={"#ced3d6"} />
+            <EyeOff />
           )}
         </TouchableOpacity>
       </View>

@@ -1,8 +1,7 @@
 import { COLOR } from "@/theme/color";
-import { ICON } from "@/theme/icon";
 import { IBoard } from "@/types/board";
+import { Heart, MessageSquareMore } from "lucide-react-native";
 import { StyleSheet, Text, View } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 /**
  * @description 아이콘 버튼들
@@ -14,13 +13,14 @@ const IconButton = ({ item, type }: { item: IBoard; type?: string }) => {
   return (
     <View style={styles.iconContainer}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <Icon
+        {/* <Icon
           name="favorite-outline"
           size={ICON.size}
           color={type ? isLike : COLOR.black}
           style={{ marginRight: 4 }}
           onPress={() => {}}
-        />
+        /> */}
+        <Heart />
         <Text style={styles.iconTitle}>{item?.likes_count}</Text>
       </View>
 
@@ -31,12 +31,13 @@ const IconButton = ({ item, type }: { item: IBoard; type?: string }) => {
           marginHorizontal: 8,
         }}
       >
-        <Icon
+        {/* <Icon
           name="textsms"
           size={ICON.size}
           color={"gray"}
           style={{ marginRight: 4 }}
-        />
+        /> */}
+        <MessageSquareMore />
         <Text style={styles.iconTitle}>{item?.comment_count}</Text>
       </View>
     </View>

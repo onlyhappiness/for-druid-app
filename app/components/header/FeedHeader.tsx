@@ -1,8 +1,8 @@
 import { COLOR } from "@/theme/color";
 import { FONT } from "@/theme/typography";
 import { IUser } from "@/types/user";
+import { Ellipsis } from "lucide-react-native";
 import { Image, StyleSheet, Text, View } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 export default ({ user }: { user: IUser }) => {
   return (
@@ -22,7 +22,8 @@ export default ({ user }: { user: IUser }) => {
         <Text style={styles.title}>{user.signname}</Text>
       </View>
 
-      <Icon name="more-horiz" size={24} color={COLOR.black} />
+      {/* <Icon name="more-horiz" size={24} color={COLOR.black} /> */}
+      <Ellipsis />
     </View>
   );
 };
