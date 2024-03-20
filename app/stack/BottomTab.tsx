@@ -6,12 +6,11 @@ import Home from "@/screens/feed/Home";
 import MyPage from "@/screens/MyPage";
 import Search from "@/screens/Search";
 import { COLOR } from "@/theme/color";
-import { ICON } from "@/theme/icon";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
+import { HomeIcon, Plus, SearchIcon, UserRound } from "lucide-react-native";
 import { useMemo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 export default () => {
   const navigation = useNavigation<any>();
@@ -52,25 +51,29 @@ export default () => {
           },
 
           tabBarIcon: ({ focused, color }) => {
-            let iconname = "";
-
             if (route.name === "Home") {
-              iconname = "home-filled";
+              return (
+                <HomeIcon
+                  color={focused ? COLOR.greenDark : COLOR.blackLight}
+                />
+              );
             } else if (route.name === "Search") {
-              iconname = "search";
+              return (
+                <SearchIcon
+                  color={focused ? COLOR.greenDark : COLOR.blackLight}
+                />
+              );
             } else if (route.name === "AddPost") {
-              iconname = "add";
+              return (
+                <Plus color={focused ? COLOR.greenDark : COLOR.blackLight} />
+              );
             } else if (route.name === "MyPage") {
-              iconname = "person-outline";
+              return (
+                <UserRound
+                  color={focused ? COLOR.greenDark : COLOR.blackLight}
+                />
+              );
             }
-
-            return (
-              <Icon
-                name={iconname}
-                size={ICON.xl}
-                color={focused ? COLOR.greenDark : COLOR.blackLight}
-              />
-            );
           },
         })}
         safeAreaInsets={{

@@ -1,9 +1,8 @@
 import { COLOR } from "@/theme/color";
-import { ICON } from "@/theme/icon";
 import { FONT } from "@/theme/typography";
 import { useNavigation } from "@react-navigation/native";
+import { ArrowLeft } from "lucide-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {
   title?: string;
@@ -18,7 +17,8 @@ export default ({ title }: Props) => {
         <Text style={styles.title}>{title}</Text>
       ) : (
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back" size={ICON.size} />
+          {/* <Icon name="arrow-back" size={ICON.size} /> */}
+          <ArrowLeft />
         </TouchableOpacity>
       )}
 
