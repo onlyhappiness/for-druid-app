@@ -2,7 +2,7 @@ import FeedCard from "@/entities/feed/ui/FeedCard";
 import HomeLayout from "@/widgets/layout/HomeLayout";
 import { useMemo } from "react";
 import { FlatList, View } from "react-native";
-import useGetBoardList from "../api/home.query";
+import useGetBoardList from "../api/getBoardList";
 
 const Home = () => {
   const { data, fetchNextPage, hasNextPage } = useGetBoardList({

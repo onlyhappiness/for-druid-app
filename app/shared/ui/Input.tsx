@@ -1,5 +1,4 @@
 // https://reactnative.dev/docs/textinput
-import { COLOR } from "@/theme/color";
 import React from "react";
 import {
   StyleSheet,
@@ -9,6 +8,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
+import { COLOR } from "../consts/color";
 
 interface IInput extends TextInputProps {
   containerStyle?: ViewStyle;

@@ -1,17 +1,21 @@
-import { postVerifySMS } from "@/api/apis/verification";
+import api from "@/shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { IVerifySMS } from "../model/register";
+
+const postVerifySMS = async (req: IVerifySMS) => {
+  const { data } = await api.post(`/verification/sms-verrify`, req);
+  return data.data;
+};
 
 const usePostVerifySMS = () => {
   return useMutation({
     mutationFn: postVerifySMS,
-    onSuccess: (res) => {
-      console.log("인증코드 검증: ", res);
-    },
+    onSuccess: (res) => {},
     onError: (err) => {
       const { data }: any = (err as AxiosError).response;
 
-      console.log("인증코드 검증", data);
+      console.log("errorResponse", data);
     },
   });
 };

@@ -1,9 +1,9 @@
-import Button from "@/components/shared/Button";
-import HelperText from "@/components/shared/HelperText";
-import InputPassword from "@/components/shared/InputPassword";
-import AuthLayout from "@/layouts/AuthLayout";
-import { COLOR } from "@/theme/color";
-import { FONT } from "@/theme/typography";
+import { COLOR } from "@/shared/consts/color";
+import { FONT } from "@/shared/consts/typography";
+import Button from "@/shared/ui/Button";
+import HelperText from "@/shared/ui/HelperText";
+import InputPassword from "@/shared/ui/InputPassword";
+import AuthLayout from "@/widgets/layout/AuthLayout";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";

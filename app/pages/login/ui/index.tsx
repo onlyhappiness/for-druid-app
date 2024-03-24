@@ -1,4 +1,3 @@
-import usePostLogin from "@/shared/api/query/auth/usePostLogin";
 import { COLOR } from "@/shared/consts/color";
 import { FONT } from "@/shared/consts/typography";
 import Button from "@/shared/ui/Button";
@@ -8,18 +7,19 @@ import Modal from "@/shared/ui/Modal";
 import HomeLayout from "@/widgets/layout/HomeLayout";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+
 import {
   Image,
   Keyboard,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import usePostLogin from "../api/postLogin";
 
-export default () => {
+const Login = () => {
   const navigation = useNavigation<any>();
 
   const [signname, setSignname] = useState("");
@@ -54,7 +54,8 @@ export default () => {
           <ScrollView style={[styles.layout]}>
             <View style={styles.container}>
               <Image
-                source={require("@/assets/logo.png")}
+                // source={require("@/shared/ui/assets/logo.png")}
+                source={require("@/shared/ui/assets/no-image.png")}
                 style={{ height: 230, marginBottom: 40 }}
               />
 
@@ -91,19 +92,21 @@ export default () => {
                 >
                   계정이 없으신가요?
                 </Text>
-                <TouchableOpacity
+
+                <Button
+                  title="로그인"
+                  containerStyle={""}
+                  textStyle={styles.registerText}
                   onPress={() => {
                     navigation.navigate("RegisterStepOne");
                   }}
-                  style={{ alignItems: "center", justifyContent: "center" }}
-                >
-                  <Text style={styles.registerText}>회원가입</Text>
-                </TouchableOpacity>
+                />
               </View>
             </View>
           </ScrollView>
         </HomeLayout>
       </TouchableWithoutFeedback>
+
       <Modal
         open={isErrorModalOpen}
         content="아이디 혹은 비밀번호를 다시 확인해주세요."
@@ -148,3 +151,5 @@ const styles = StyleSheet.create({
   },
   socialContainer: {},
 });
+
+export default Login;

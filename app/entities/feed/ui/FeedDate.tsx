@@ -1,7 +1,7 @@
 import { COLOR } from "@/shared/consts/color";
 import { FONT } from "@/shared/consts/typography";
 import { Text, View } from "react-native";
-import { daysAgo } from "../../../shared/lib/func";
+import { daysAgo } from "../lib/format-day-ago";
 import { IFeedCard } from "../model/feedcard";
 
 const FeedDate = ({ item }: { item: IFeedCard }) => {

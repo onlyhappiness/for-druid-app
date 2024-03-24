@@ -1,8 +1,15 @@
 import { useUserInfoActions } from "@/app/store/userStore";
+import api from "@/shared/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { postLogin } from "../../apis/auth";
+import { IPostLogin } from "../model/login";
+
+// post 로그인
+export const postLogin = async (req: IPostLogin) => {
+  const { data } = await api.post(`/auth/login`, req);
+  return data.data;
+};
 
 const usePostLogin = () => {
   const { setUser } = useUserInfoActions();
@@ -16,8 +23,8 @@ const usePostLogin = () => {
       await AsyncStorage.setItem("token", token);
       await setUser();
     },
-    onError: (err) => {
-      const { data }: any = (err as AxiosError).response;
+    onError: (error) => {
+      const { data }: any = (error as AxiosError).response;
 
       console.log("로그인 에러:: ", data);
     },

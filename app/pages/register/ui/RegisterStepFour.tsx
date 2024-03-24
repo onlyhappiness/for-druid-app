@@ -1,13 +1,13 @@
-import usePostVerifySMS from "@/api/query/verification/usePostVerifySMS";
-import Button from "@/components/shared/Button";
-import Input from "@/components/shared/Input";
-import AuthLayout from "@/layouts/AuthLayout";
-import { COLOR } from "@/theme/color";
-import { FONT } from "@/theme/typography";
+import { COLOR } from "@/shared/consts/color";
+import { FONT } from "@/shared/consts/typography";
+import Button from "@/shared/ui/Button";
+import Input from "@/shared/ui/Input";
+import AuthLayout from "@/widgets/layout/AuthLayout";
 import { useRoute } from "@react-navigation/native";
 import { useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import usePostVerifySMS from "../api/postVerifySMS";
 
 export default () => {
   const { bottom } = useSafeAreaInsets();

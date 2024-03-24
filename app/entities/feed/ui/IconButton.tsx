@@ -14,13 +14,6 @@ const IconButton = ({ item, type }: { item: IFeedCard; type?: string }) => {
   return (
     <View style={styles.iconContainer}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        {/* <Icon
-          name="favorite-outline"
-          size={ICON.size}
-          color={type ? isLike : COLOR.black}
-          style={{ marginRight: 4 }}
-          onPress={() => {}}
-        /> */}
         <Heart
           color={COLOR.black}
           size={ICON.size}
@@ -36,12 +29,6 @@ const IconButton = ({ item, type }: { item: IFeedCard; type?: string }) => {
           marginHorizontal: 8,
         }}
       >
-        {/* <Icon
-          name="textsms"
-          size={ICON.size}
-          color={"gray"}
-          style={{ marginRight: 4 }}
-        /> */}
         <MessageSquareMore
           color={COLOR.black}
           size={ICON.size}

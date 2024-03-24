@@ -1,6 +1,6 @@
-import { COLOR } from "@/theme/color";
-import { FONT } from "@/theme/typography";
 import { Modal, StyleSheet, Text, View } from "react-native";
+import { COLOR } from "../consts/color";
+import { FONT } from "../consts/typography";
 import Button from "./Button";
 
 // https://reactnative.dev/docs/modal

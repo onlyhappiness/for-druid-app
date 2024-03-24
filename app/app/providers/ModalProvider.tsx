@@ -7,7 +7,7 @@ import { useModalActions, useModalState } from "../store/modalStore";
 const ModalProvider = ({ id }: { id: string }) => {
   const modal = useModalState({ id }) || false;
 
-  const { openModal, closeModal } = useModalActions();
+  const { closeModal } = useModalActions();
 
   return (
     <Modal

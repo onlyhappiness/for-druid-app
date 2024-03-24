@@ -38,6 +38,9 @@ export const COLOR = {
   /* input */
   input: "#bec3cf",
 
+  /* icon */
+  icon: "#363a3c",
+
   /* background */
   background: "#f1f3f5",
 };

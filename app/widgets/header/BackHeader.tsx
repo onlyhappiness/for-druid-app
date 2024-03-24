@@ -13,8 +13,7 @@ export default ({ title }: Props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        {/* <Icon name="arrow-back" size={ICON.size} /> */}
-        <ArrowLeft />
+        <ArrowLeft color={COLOR.icon} />
       </TouchableOpacity>
 
       <Text style={styles.title}>{title}</Text>

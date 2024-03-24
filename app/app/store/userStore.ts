@@ -16,7 +16,6 @@ const userStore = create(
       user: null,
       setUser: async () => {
         const user = await getLogin();
-
         set({ user: user });
       },
       clearUser: async () => {

@@ -1,15 +1,15 @@
-import { usePostCheckSignname } from "@/api/query/user/usePostCheckSignname";
-import Button from "@/components/shared/Button";
-import HelperText from "@/components/shared/HelperText";
-import Input from "@/components/shared/Input";
-import Modal from "@/components/shared/Modal";
-import AuthLayout from "@/layouts/AuthLayout";
-import { COLOR } from "@/theme/color";
-import { FONT } from "@/theme/typography";
+import { COLOR } from "@/shared/consts/color";
+import { FONT } from "@/shared/consts/typography";
+import Button from "@/shared/ui/Button";
+import HelperText from "@/shared/ui/HelperText";
+import Input from "@/shared/ui/Input";
+import Modal from "@/shared/ui/Modal";
+import AuthLayout from "@/widgets/layout/AuthLayout";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import usePostCheckSignname from "../api/postCheckSignname";
 
 export default () => {
   const navigation = useNavigation<any>();
@@ -27,15 +27,19 @@ export default () => {
     return signname.length >= 6 && signname.length <= 12;
   }, [signname]);
 
-  const checkSignname = usePostCheckSignname({
-    setModalOpen: setIsDuplicateOpen,
-    isCheck: setIsCheckSigname,
-  });
+  const checkSignname = usePostCheckSignname();
 
   const handleDuplicateSigname = async (signname: string) => {
     const body = { signname: signname };
 
-    await checkSignname.mutateAsync(body);
+    await checkSignname
+      .mutateAsync(body)
+      .then(() => {
+        setIsCheckSigname(true); // 중복 체크
+      })
+      .catch((err) => {
+        setIsDuplicateOpen(true); // 중복 있음 modal
+      });
   };
 
   const onPressNext = () => {
