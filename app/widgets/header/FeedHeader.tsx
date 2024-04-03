@@ -1,6 +1,6 @@
 import { COLOR } from "@/shared/consts/color";
 import { FONT } from "@/shared/consts/typography";
-import { Ellipsis } from "lucide-react-native";
+import { Ellipsis, UserRound } from "lucide-react-native";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default ({ user }: { user: any }) => {
@@ -12,18 +12,22 @@ export default ({ user }: { user: any }) => {
           alignItems: "center",
         }}
       >
-        <Image
-          source={
-            user.image
-              ? { uri: user.image }
-              : require("@/shared/ui/assets/no-image.png")
-          }
-          style={styles.avatar}
-        />
+        {user?.image ? (
+          <Image source={{ uri: user.image }} style={styles.avatar} />
+        ) : (
+          <View
+            style={[
+              styles.avatar,
+              { justifyContent: "center", alignItems: "center" },
+            ]}
+          >
+            <UserRound color={COLOR.blackLight} />
+          </View>
+        )}
+
         <Text style={styles.title}>{user.signname}</Text>
       </View>
 
-      {/* <Icon name="more-horiz" size={24} color={COLOR.black} /> */}
       <Ellipsis color={COLOR.black} />
     </View>
   );

@@ -1,5 +1,5 @@
-import { useUserInfoActions } from "@/app/store/userStore";
 import api from "@/shared/api";
+import { useUserInfoActions } from "@/shared/model/userStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";

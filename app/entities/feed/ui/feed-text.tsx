@@ -16,12 +16,12 @@ const FeedText = ({ item, type }: { item: IFeedCard; type?: string }) => {
     return (
       <>
         <Text style={styles.content}>
-          {item?.content.length > 80
+          {item?.content?.length > 80
             ? item?.content.substring(0, 80) + "..."
             : item?.content}
         </Text>
 
-        {item?.content.length > 80 && (
+        {item?.content?.length > 80 && (
           <TouchableOpacity style={{ marginTop: 8 }} onPress={toggleExpanded}>
             <Text style={{ color: COLOR.grayDark }}>더보기</Text>
           </TouchableOpacity>

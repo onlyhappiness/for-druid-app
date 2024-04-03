@@ -1,4 +1,4 @@
-import AuthHeader from "@/components/header/AuthHeader";
+import AuthHeader from "@/widgets/header/AuthHeader";
 import { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

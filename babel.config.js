@@ -23,7 +23,6 @@ module.exports = {
           "@/entities": "./app/entities",
           "@/features": "./app/features",
           "@/shared": "./app/shared",
-          // "@/utils": "./app/utils",
         },
       },
     ],

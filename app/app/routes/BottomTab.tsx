@@ -8,9 +8,9 @@ import { useNavigation } from "@react-navigation/native";
 import { HomeIcon, Plus, SearchIcon, UserRound } from "lucide-react-native";
 import { useMemo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useUserInfo } from "../../shared/model/userStore";
 import ModalProvider from "../providers/ModalProvider";
 import { useModalActions } from "../store/modalStore";
-import { useUserInfo } from "../store/userStore";
 
 export default () => {
   const navigation = useNavigation<any>();

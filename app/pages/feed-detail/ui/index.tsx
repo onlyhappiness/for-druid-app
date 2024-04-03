@@ -1,22 +1,27 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { View } from "lucide-react-native";
-import { Text } from "react-native";
+import CommentInfo from "@/entities/comment/ui/comment-info";
+import CommentInput from "@/entities/comment/ui/comment-input";
+import FeedCard from "@/entities/feed/ui/feed-card";
+import { useUserInfo } from "@/shared/model/userStore";
+import HomeLayout from "@/widgets/layout/HomeLayout";
+import { useRoute } from "@react-navigation/native";
+import useGetBoardDetail from "../api/getBoardDetail";
 
-export default () => {
+const FeedDetail = () => {
   const { params } = useRoute<any>();
 
-  const navigation = useNavigation();
+  const { data } = useGetBoardDetail({ id: params.id });
 
-  //   const { data } = useGetBoardDetail(params.id);
-
-  //   console.log("data:: ", data?.User);
+  const { user: userInfo } = useUserInfo();
 
   return (
-    <View>
-      <Text>나와</Text>
-    </View>
-    // <HomeLayout title={`${data?.User?.signname}의 Feed`} back>
-    //   <FeedCard item={data} type="detail" />
-    // </HomeLayout>
+    <HomeLayout title={`${data?.User?.signname}의 Feed`} back>
+      <FeedCard item={data} type="detail" />
+
+      {userInfo && <CommentInput />}
+
+      <CommentInfo />
+    </HomeLayout>
   );
 };
+
+export default FeedDetail;

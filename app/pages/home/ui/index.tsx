@@ -1,4 +1,4 @@
-import FeedCard from "@/entities/feed/ui/FeedCard";
+import FeedCard from "@/entities/feed/ui/feed-card";
 import HomeLayout from "@/widgets/layout/HomeLayout";
 import { useMemo } from "react";
 import { FlatList, View } from "react-native";

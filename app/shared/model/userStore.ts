@@ -15,8 +15,9 @@ const userStore = create(
     (set) => ({
       user: null,
       setUser: async () => {
-        const user = await getLogin();
-        set({ user: user });
+        const user = await getLogin().then(() => {
+          set({ user: user });
+        });
       },
       clearUser: async () => {
         set({ user: null });
