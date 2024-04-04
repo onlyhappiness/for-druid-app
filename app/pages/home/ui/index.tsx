@@ -12,8 +12,6 @@ const Home = () => {
 
   const boardList = useMemo(() => (data ? data?.pages : []), [data]);
 
-  console.log(">> boardList", boardList);
-
   const onEndReached = () => {
     if (hasNextPage) {
       fetchNextPage();

@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
     borderColor: COLOR.grayLight,
-    // borderColor: "#ced3d6",
     borderWidth: 1,
     paddingVertical: 4,
     paddingHorizontal: 8,

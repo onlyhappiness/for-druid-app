@@ -1,5 +1,5 @@
-import CommentInfo from "@/entities/comment/ui/comment-info";
 import CommentInput from "@/entities/comment/ui/comment-input";
+import CommentList from "@/entities/comment/ui/comment-list";
 import FeedCard from "@/entities/feed/ui/feed-card";
 import { useUserInfo } from "@/shared/model/userStore";
 import HomeLayout from "@/widgets/layout/HomeLayout";
@@ -19,7 +19,7 @@ const FeedDetail = () => {
 
       {userInfo && <CommentInput />}
 
-      <CommentInfo />
+      <CommentList />
     </HomeLayout>
   );
 };

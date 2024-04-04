@@ -7,8 +7,6 @@ import { StyleSheet, View } from "react-native";
 const CommentInput = () => {
   const [content, setContent] = useState("");
 
-  console.log("content::", content);
-
   return (
     <View style={styles.container}>
       <Avatar />

@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 
 const MyPage = () => {
   return (
-    <HomeLayout>
+    <HomeLayout title="My Page">
       <View>
         <Text>프로필</Text>
       </View>

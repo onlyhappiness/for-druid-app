@@ -9,7 +9,6 @@ import { HomeIcon, Plus, SearchIcon, UserRound } from "lucide-react-native";
 import { useMemo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUserInfo } from "../../shared/model/userStore";
-import ModalProvider from "../providers/ModalProvider";
 import { useModalActions } from "../store/modalStore";
 
 export default () => {
@@ -21,7 +20,7 @@ export default () => {
 
   const { bottom } = useSafeAreaInsets();
 
-  const navigatePath = (e: unknown) => {
+  const navigatePath = (e: any) => {
     if (!userInfo) {
       e.preventDefault();
       openModal({
@@ -39,7 +38,7 @@ export default () => {
 
   return (
     <>
-      <ModalProvider id="go-to-signin" />
+      {/* <ModalProvider id="go-to-signin" /> */}
       <Tab.Navigator
         initialRouteName="BottomTab"
         screenOptions={({ route }) => ({
@@ -85,9 +84,9 @@ export default () => {
           name="Search"
           component={Search}
           options={{ title: "검색 " }}
-          listeners={({ navigation }) => ({
-            tabPress: navigatePath,
-          })}
+          // listeners={({ navigation }) => ({
+          //   tabPress: navigatePath,
+          // })}
         />
         <Tab.Screen
           name="AddPost"
