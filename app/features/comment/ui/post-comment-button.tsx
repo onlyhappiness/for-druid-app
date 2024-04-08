@@ -5,7 +5,13 @@ import { useRoute } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import usePostComment from "../api/postComment";
 
-const CommentButton = ({ content }: { content: string }) => {
+const CommentButton = ({
+  content,
+  setContent,
+}: {
+  content: string;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { params } = useRoute<any>();
 
   const postComment = usePostComment();
@@ -18,13 +24,14 @@ const CommentButton = ({ content }: { content: string }) => {
       content,
     };
 
-    postComment.mutate({
-      id: params.id,
-      req,
-    });
-
-    // console.log("params::: ", params);
-    // console.log("req::: ", req);
+    postComment
+      .mutateAsync({
+        id: params.id,
+        req,
+      })
+      .then(() => {
+        setContent("");
+      });
   };
 
   return (

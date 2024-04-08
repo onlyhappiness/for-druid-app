@@ -1,7 +1,6 @@
 import AddFeed from "@/pages/add-feed/ui";
 import Home from "@/pages/home/ui";
 import MyPage from "@/pages/my-page/ui";
-import Search from "@/pages/search/ui";
 import { COLOR } from "@/shared/consts/color";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
@@ -80,14 +79,14 @@ export default () => {
         }}
       >
         <Tab.Screen name="Home" component={Home} options={{ title: "홈" }} />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Search"
           component={Search}
           options={{ title: "검색 " }}
-          // listeners={({ navigation }) => ({
-          //   tabPress: navigatePath,
-          // })}
-        />
+          listeners={({ navigation }) => ({
+            tabPress: navigatePath,
+          })}
+        /> */}
         <Tab.Screen
           name="AddPost"
           component={AddFeed}

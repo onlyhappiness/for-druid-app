@@ -1,12 +1,10 @@
+import UserCircle from "@/entities/my-page/ui/user-circle";
 import HomeLayout from "@/widgets/layout/HomeLayout";
-import { Text, View } from "react-native";
 
 const MyPage = () => {
   return (
-    <HomeLayout title="My Page">
-      <View>
-        <Text>프로필</Text>
-      </View>
+    <HomeLayout title="">
+      <UserCircle />
     </HomeLayout>
   );
 };

@@ -19,7 +19,7 @@ const CommentInput = () => {
         />
       </View>
 
-      <CommentButton content={content} />
+      <CommentButton content={content} setContent={setContent} />
     </View>
   );
 };
