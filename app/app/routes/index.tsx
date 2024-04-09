@@ -19,6 +19,7 @@ export default () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="BottomTab" component={BottomTab} />
+
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="RegisterStepOne" component={RegisterStepOne} />
         <Stack.Screen name="RegisterStepTwo" component={RegisterStepTwo} />

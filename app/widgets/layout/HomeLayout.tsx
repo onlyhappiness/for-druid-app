@@ -1,7 +1,7 @@
 import { COLOR } from "@/shared/consts/color";
 import { FONT } from "@/shared/consts/typography";
 import { useNavigation } from "@react-navigation/native";
-import { ArrowLeft } from "lucide-react-native";
+import { ArrowLeft, Bell, Search } from "lucide-react-native";
 import { ReactNode } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -11,12 +11,19 @@ interface Props {
   children: ReactNode;
   extraChildren?: ReactNode;
   back?: boolean;
+  rightButton?: boolean;
 }
 
-export default ({ title, children, extraChildren, back = false }: Props) => {
+export default ({
+  title,
+  children,
+  extraChildren,
+  back = false,
+  rightButton = false,
+}: Props) => {
   const { top } = useSafeAreaInsets();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   return (
     <View style={styles.layout}>
@@ -41,6 +48,23 @@ export default ({ title, children, extraChildren, back = false }: Props) => {
           </View>
 
           {back && <View />}
+
+          {rightButton && (
+            <View style={styles.rightContainer}>
+              <TouchableOpacity
+                style={{ marginRight: 15 }}
+                onPress={() => {
+                  navigation.navigate("Search");
+                }}
+              >
+                <Search color={COLOR.icon} />
+              </TouchableOpacity>
+
+              <TouchableOpacity>
+                <Bell color={COLOR.icon} />
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
 
         {children}
@@ -71,5 +95,9 @@ const styles = StyleSheet.create({
   title: {
     color: COLOR.black,
     fontFamily: "Pretendard-SemiBold",
+  },
+
+  rightContainer: {
+    flexDirection: "row",
   },
 });

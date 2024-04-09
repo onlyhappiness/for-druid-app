@@ -19,7 +19,7 @@ const Home = () => {
   };
 
   return (
-    <HomeLayout title="Feed">
+    <HomeLayout title="Feed" rightButton={true}>
       <FlatList
         data={boardList.map((page) => page.data).flat()}
         renderItem={({ item }) => <FeedCard item={item} type="feed" />}
