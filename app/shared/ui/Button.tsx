@@ -8,12 +8,14 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
+import { COLOR } from "../consts/color";
 
 interface ButtonProps {
   containerStyle?: ViewStyle | any;
   textStyle?: TextStyle | any;
   title: string;
   loading?: boolean;
+  textButton?: boolean;
 }
 
 // https://reactnative.dev/docs/touchableopacity
@@ -22,6 +24,7 @@ const Button: React.FC<ButtonProps | any> = ({
   textStyle,
   title,
   loading,
+  textButton,
   ...props
 }) => {
   const onClick = useCallback(debounce(props.onPress, 300), [props.onPress]);
@@ -29,11 +32,11 @@ const Button: React.FC<ButtonProps | any> = ({
   return (
     <TouchableOpacity
       {...props}
-      style={[styles.container, containerStyle]}
+      style={[textButton ? styles.textButton : styles.button, containerStyle]}
       activeOpacity={0.85}
       onPress={props.disable || props.loading ? () => null : onClick}
     >
-      <Text style={[textStyle]}>{title}</Text>
+      <Text style={[styles.text, textStyle]}>{title}</Text>
 
       {loading && <ActivityIndicator color={"#fff"} />}
     </TouchableOpacity>
@@ -41,14 +44,23 @@ const Button: React.FC<ButtonProps | any> = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
+  textButton: {
     borderRadius: 8,
     paddingVertical: 15,
     alignItems: "center",
   },
+  button: {
+    borderRadius: 8,
+    paddingVertical: 15,
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: COLOR.green,
+  },
   text: {
     alignItems: "center",
     justifyContent: "center",
+    color: "white",
+    fontFamily: "Pretendard-Regular",
   },
 });
 

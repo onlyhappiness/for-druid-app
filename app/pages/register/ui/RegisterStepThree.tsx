@@ -2,7 +2,6 @@ import { COLOR } from "@/shared/consts/color";
 import { FONT } from "@/shared/consts/typography";
 import Button from "@/shared/ui/Button";
 import Input from "@/shared/ui/Input";
-import Modal from "@/shared/ui/Modal";
 import AuthLayout from "@/widgets/layout/AuthLayout";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useMemo, useState } from "react";
@@ -92,13 +91,13 @@ export default () => {
             />
           </View>
 
-          <Modal
+          {/* <Modal
             open={isDuplicateOpen}
             content="이미 가입된 전화번호입니다."
             onConfirm={() => {
               setIsDuplicateOpen(false);
             }}
-          />
+          /> */}
         </>
       }
     >

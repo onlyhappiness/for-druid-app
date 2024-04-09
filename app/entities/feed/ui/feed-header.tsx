@@ -1,19 +1,27 @@
+import UserImage from "@/features/user-image/ui/user-image";
 import { COLOR } from "@/shared/consts/color";
+import { ICON } from "@/shared/consts/icon";
 import { FONT } from "@/shared/consts/typography";
-import { Ellipsis, UserRound } from "lucide-react-native";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Ellipsis } from "lucide-react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default ({ user }: { user: any }) => {
+  const navigation = useNavigation<any>();
+
+  console.log("user::: ", user);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {user?.image ? (
-          <Image source={{ uri: user.image }} style={styles.avatar} />
-        ) : (
-          <View style={styles.avatar}>
-            <UserRound color={COLOR.blackLight} />
-          </View>
-        )}
+        <UserImage
+          user={user}
+          size={styles.avatar}
+          icon={ICON.size}
+          onPress={() => {
+            navigation.navigate("UserProfile", { user: user });
+          }}
+        />
 
         <Text style={styles.title}>{user.signname}</Text>
       </View>
@@ -39,10 +47,6 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 45,
     marginRight: 10,
-    borderWidth: 1,
-    borderColor: COLOR.grayLight,
-    justifyContent: "center",
-    alignItems: "center",
   },
   title: { fontSize: FONT.base, fontFamily: "Pretendard-SemiBold" },
 });

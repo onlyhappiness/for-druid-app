@@ -1,24 +1,24 @@
 import { COLOR } from "@/shared/consts/color";
-import { ICON } from "@/shared/consts/icon";
-import { useUserInfo } from "@/shared/model/userStore";
 import { UserRound } from "lucide-react-native";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 interface IProps {
+  user: any;
   size: Record<string, any>;
-  path?: () => void;
+  icon: number;
+  onPress?: () => void;
 }
 
-const UserImage = ({ size, path }: IProps) => {
-  const { user } = useUserInfo();
+const UserImage = ({ user, size, icon, onPress }: IProps) => {
+  // const { user } = useUserInfo();
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       {user?.image ? (
         <Image source={{ uri: user.image }} style={[styles.avatar, size]} />
       ) : (
         <View style={[styles.avatar, size]}>
-          <UserRound color={COLOR.blackLight} size={ICON.xxl} />
+          <UserRound color={COLOR.blackLight} size={icon} />
         </View>
       )}
     </TouchableOpacity>

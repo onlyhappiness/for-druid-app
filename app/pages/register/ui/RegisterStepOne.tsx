@@ -3,7 +3,6 @@ import { FONT } from "@/shared/consts/typography";
 import Button from "@/shared/ui/Button";
 import HelperText from "@/shared/ui/HelperText";
 import Input from "@/shared/ui/Input";
-import Modal from "@/shared/ui/Modal";
 import AuthLayout from "@/widgets/layout/AuthLayout";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useMemo, useState } from "react";
@@ -69,13 +68,13 @@ export default () => {
             onPressNext={onPressNext}
           />
 
-          <Modal
+          {/* <Modal
             open={isDuplicateOpen}
             content="이미 사용중인 아이디입니다."
             onConfirm={() => {
               setIsDuplicateOpen(false);
             }}
-          />
+          /> */}
         </>
       }
     >

@@ -3,7 +3,7 @@ import { useUserInfoActions } from "@/shared/model/userStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { IPostLogin } from "../model/login";
+import { IPostLogin } from "../../../pages/login/model/login";
 
 // post 로그인
 export const postLogin = async (req: IPostLogin) => {

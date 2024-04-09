@@ -1,42 +1,30 @@
 import { Modal, StyleSheet, Text, View } from "react-native";
 import { COLOR } from "../consts/color";
 import { FONT } from "../consts/typography";
-import Button from "./Button";
 
 // https://reactnative.dev/docs/modal
 // https://bi.spoqa.com/ui.html
 interface IModal {
   open: boolean;
   title?: string;
-  content: string;
-
-  onConfirm?: () => void;
-  onCancel?: () => void;
-
-  confirmText?: string;
-  cancelText?: string;
+  content: React.ReactNode;
+  footer: React.ReactNode;
 }
 
-export default ({
-  open,
-  title,
-  content,
-  onConfirm,
-  onCancel,
-  confirmText,
-  cancelText,
-}: IModal) => {
+export default ({ open, title, content, footer }: IModal) => {
   return (
     <Modal visible={open} transparent={true} animationType="fade">
       <View style={styles.container}>
         <View style={styles.modal}>
           <View style={styles.top}>
             {title && <Text>{title}</Text>}
-            <Text>{content}</Text>
-          </View>
 
+            {content}
+          </View>
           <View style={styles.footer}>
-            <Button
+            {footer}
+
+            {/* <Button
               title={confirmText || "확인"}
               onPress={onConfirm ? onConfirm : onCancel}
               containerStyle={
@@ -53,7 +41,7 @@ export default ({
                 containerStyle={[styles.button]}
                 textStyle={styles.buttonText}
               />
-            )}
+            )} */}
           </View>
         </View>
       </View>

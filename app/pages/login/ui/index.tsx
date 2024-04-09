@@ -1,9 +1,9 @@
+import PostLoginButton from "@/features/post-login/ui";
 import { COLOR } from "@/shared/consts/color";
 import { FONT } from "@/shared/consts/typography";
 import Button from "@/shared/ui/Button";
 import Input from "@/shared/ui/Input";
 import InputPassword from "@/shared/ui/InputPassword";
-import Modal from "@/shared/ui/Modal";
 import HomeLayout from "@/widgets/layout/HomeLayout";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
@@ -17,7 +17,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import usePostLogin from "../api/postLogin";
 
 const Login = () => {
   const navigation = useNavigation<any>();
@@ -26,26 +25,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-
-  const login = usePostLogin();
-  const onSubmitLogin = async () => {
-    try {
-      const body = {
-        loginType: "SIGNNAME",
-        signname,
-        password,
-      };
-
-      await login.mutateAsync(body).then((res) => {
-        navigation.navigate("BottomTab");
-      });
-    } catch (error) {
-      console.log("로그인 에러::: ", error);
-      setIsErrorModalOpen(true);
-    }
-  };
 
   return (
     <>
@@ -75,12 +54,7 @@ const Login = () => {
                 setIsVisible={setIsPasswordVisible}
               />
 
-              <Button
-                title="로그인"
-                containerStyle={styles.loginButton}
-                textStyle={styles.buttonText}
-                onPress={onSubmitLogin}
-              />
+              <PostLoginButton signname={signname} password={password} />
 
               <View style={styles.buttonContainer}>
                 <Text
@@ -94,6 +68,7 @@ const Login = () => {
                 </Text>
 
                 <Button
+                  textButton
                   title="로그인"
                   containerStyle={""}
                   textStyle={styles.registerText}
@@ -106,12 +81,6 @@ const Login = () => {
           </ScrollView>
         </HomeLayout>
       </TouchableWithoutFeedback>
-
-      <Modal
-        open={isErrorModalOpen}
-        content="아이디 혹은 비밀번호를 다시 확인해주세요."
-        onConfirm={() => setIsErrorModalOpen(false)}
-      />
     </>
   );
 };
@@ -129,16 +98,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
-  loginButton: {
-    width: "100%",
-    backgroundColor: COLOR.green,
-    marginBottom: 30,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    fontFamily: "Pretendard-SemiBold",
-  },
   buttonContainer: {
     flexDirection: "row",
     alignItems: "center",

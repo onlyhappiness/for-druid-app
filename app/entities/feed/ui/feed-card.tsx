@@ -1,9 +1,9 @@
 import { COLOR } from "@/shared/consts/color";
 import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import FeedHeader from "../../../widgets/header/FeedHeader";
 import { IFeedCard } from "../model/feedcard";
 import FeedDate from "./feed-date";
+import FeedHeader from "./feed-header";
 import FeedText from "./feed-text";
 import IconButton from "./icon-button";
 
