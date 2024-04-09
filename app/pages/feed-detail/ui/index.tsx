@@ -4,6 +4,7 @@ import FeedCard from "@/entities/feed/ui/feed-card";
 import { useUserInfo } from "@/shared/model/userStore";
 import HomeLayout from "@/widgets/layout/HomeLayout";
 import { useRoute } from "@react-navigation/native";
+import { ScrollView } from "react-native";
 import useGetBoardDetail from "../api/getBoardDetail";
 
 const FeedDetail = () => {
@@ -15,11 +16,13 @@ const FeedDetail = () => {
 
   return (
     <HomeLayout title={`${data?.User?.signname}의 Feed`} back>
-      <FeedCard item={data} type="detail" />
+      <ScrollView nestedScrollEnabled={true}>
+        <FeedCard item={data} type="detail" />
 
-      {userInfo && <CommentInput />}
+        {userInfo && <CommentInput />}
 
-      <CommentList />
+        <CommentList />
+      </ScrollView>
     </HomeLayout>
   );
 };

@@ -1,10 +1,13 @@
 import FeedCard from "@/entities/feed/ui/feed-card";
+import { useUserInfoActions } from "@/shared/model/userStore";
 import HomeLayout from "@/widgets/layout/HomeLayout";
 import { useMemo } from "react";
 import { FlatList, View } from "react-native";
 import useGetBoardList from "../api/getBoardList";
 
 const Home = () => {
+  const { clearUser } = useUserInfoActions();
+
   const { data, fetchNextPage, hasNextPage } = useGetBoardList({
     cursor: 0,
     limit: 10,
@@ -28,6 +31,15 @@ const Home = () => {
         onEndReached={onEndReached}
         onEndReachedThreshold={0.8}
       />
+
+      {/* <Bottom>
+        <Button
+          title="로그아웃"
+          onPress={() => {
+            clearUser();
+          }}
+        />
+      </Bottom> */}
     </HomeLayout>
   );
 };

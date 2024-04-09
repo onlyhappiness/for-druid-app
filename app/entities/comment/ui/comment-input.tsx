@@ -1,4 +1,4 @@
-import CommentButton from "@/features/comment/ui/post-comment-button";
+import CommentButton from "@/features/post-comment/ui/post-comment-button";
 import Avatar from "@/shared/ui/Avatar";
 import Input from "@/shared/ui/Input";
 import { useState } from "react";

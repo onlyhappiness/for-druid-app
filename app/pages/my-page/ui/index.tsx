@@ -1,13 +1,22 @@
-import FollowList from "@/entities/my-page/ui/follow-list";
-import UserCircle from "@/entities/my-page/ui/user-circle";
+import FollowList from "@/entities/user-info/ui/follow-list";
+import UserCircle from "@/entities/user-info/ui/user-circle";
 import HomeLayout from "@/widgets/layout/HomeLayout";
+import { ScrollView } from "react-native";
 
 const MyPage = () => {
+  // const { user } = useUserInfo();
+
+  // console.log("user::: ", user);
+
   return (
     <HomeLayout title="" rightButton>
-      <UserCircle />
+      <ScrollView>
+        <UserCircle />
 
-      <FollowList />
+        <FollowList />
+
+        {/* <UserFeedList user={user} /> */}
+      </ScrollView>
     </HomeLayout>
   );
 };

@@ -9,12 +9,9 @@ import { HomeIcon, Plus, UserRound } from "lucide-react-native";
 import { useMemo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUserInfo } from "../../shared/model/userStore";
-import { useModalActions } from "../store/modalStore";
 
 export default () => {
   const navigation = useNavigation<any>();
-
-  const { openModal, closeModal } = useModalActions();
 
   const { user: userInfo } = useUserInfo();
 
@@ -23,14 +20,6 @@ export default () => {
   const navigatePath = (e: any) => {
     if (!userInfo) {
       e.preventDefault();
-      openModal({
-        id: "go-to-signin",
-        content: "로그인이 필요한 서비스입니다.",
-        onConfirm: () => {
-          closeModal({ id: "go-to-signin" });
-          navigation.navigate("Login");
-        },
-      });
     }
   };
 

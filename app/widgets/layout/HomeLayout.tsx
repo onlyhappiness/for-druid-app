@@ -21,13 +21,15 @@ export default ({
   back = false,
   rightButton = false,
 }: Props) => {
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
 
   const navigation = useNavigation<any>();
 
   return (
     <View style={styles.layout}>
-      <View style={[styles.container, { paddingTop: top }]}>
+      <View
+        style={[styles.container, { paddingTop: top, paddingBottom: bottom }]}
+      >
         <View style={styles.header}>
           {back && (
             <TouchableOpacity onPress={() => navigation.goBack()}>

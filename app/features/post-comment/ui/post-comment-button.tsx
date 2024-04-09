@@ -20,18 +20,11 @@ const CommentButton = ({
       console.log("비었음");
     }
 
-    const req = {
-      content,
-    };
+    const req = { content };
 
-    postComment
-      .mutateAsync({
-        id: params.id,
-        req,
-      })
-      .then(() => {
-        setContent("");
-      });
+    postComment.mutateAsync({ id: params.id, req }).then(() => {
+      setContent("");
+    });
   };
 
   return (

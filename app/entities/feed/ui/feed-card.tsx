@@ -1,4 +1,3 @@
-import { useModalActions } from "@/app/store/modalStore";
 import { COLOR } from "@/shared/consts/color";
 import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -11,21 +10,8 @@ import IconButton from "./icon-button";
 export default ({ item, type }: { item: IFeedCard; type: string }) => {
   const navigation = useNavigation<any>();
 
-  const { openModal, closeModal } = useModalActions();
-
   const navigatePath = () => {
-    // if (!userInfo) {
-    //   openModal({
-    //     id: "go-to-signin",
-    //     content: "로그인이 필요한 서비스입니다.",
-    //     onConfirm: () => {
-    //       closeModal({ id: "go-to-signin" });
-    //       navigation.navigate("Login");
-    //     },
-    //   });
-    // } else {
     navigation.navigate("FeedDetail", { id: item?.id });
-    // }
   };
 
   const card = () => {

@@ -1,4 +1,4 @@
-import UserImage from "@/features/user/ui/user-image";
+import UserImage from "@/features/user-image/ui/user-image";
 import { FONT } from "@/shared/consts/typography";
 import { useUserInfo } from "@/shared/model/userStore";
 import { StyleSheet, Text, View } from "react-native";

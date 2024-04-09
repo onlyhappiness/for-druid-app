@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import { useMemo } from "react";
-import { FlatList } from "react-native";
+import { StyleSheet, View } from "react-native";
 import useGetCommentList from "../api/getCommentList";
 import CommentInfo from "./comment-info";
 
@@ -13,15 +13,28 @@ const CommentList = () => {
     limit: 10,
   });
 
-  const commentList = useMemo(() => (data ? data.pages : []), [data]);
+  const isComment = useMemo(() => (data ? data.pages : []), [data]);
+  const commentList = isComment.map((page) => page.data).flat();
 
   return (
-    <FlatList
-      data={commentList.map((page) => page.data).flat()}
-      renderItem={({ item }) => <CommentInfo data={item} />}
-      keyExtractor={(item) => item?.id}
-    />
+    <View style={styles.container}>
+      {commentList?.map((c) => (
+        <CommentInfo data={c} key={c.id} />
+      ))}
+    </View>
+    // <FlatList
+    //   nestedScrollEnabled={true}
+    //   data={commentList.map((page) => page.data).flat()}
+    //   renderItem={({ item }) => <CommentInfo data={item} />}
+    //   keyExtractor={(item) => item?.id}
+    // />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 30,
+  },
+});
 
 export default CommentList;

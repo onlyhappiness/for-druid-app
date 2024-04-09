@@ -21,6 +21,7 @@ const usePostComment = () => {
     onSuccess: (res) => {
       console.log("댓글 성공: ", res);
       queryClient.invalidateQueries({ queryKey: ["comment-list"] });
+      queryClient.invalidateQueries({ queryKey: ["get-board-detail"] });
     },
     onError: (err) => {
       console.log("댓글 err: ", err);
