@@ -2,15 +2,16 @@
  * @format
  */
 
-import "react-native";
-import App from "../app/app";
+import React from 'react';
+import 'react-native';
+import App from '../app/client/App';
 
 // Note: import explicitly to use the types shipped with jest.
-import { it } from "@jest/globals";
+import {it} from '@jest/globals';
 
 // Note: test renderer must be required after react-native.
-import renderer from "react-test-renderer";
+import renderer from 'react-test-renderer';
 
-it("renders correctly", () => {
+it('renders correctly', () => {
   renderer.create(<App />);
 });
