@@ -1,52 +1,28 @@
-import {COLORS} from '@/theme/color';
 import React from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
-import DefaultHeader from './header/DefaultHeader';
-import HomeHeader from './header/HomeHeader';
-import SearchHeader from './header/SearchHeader';
+import {StyleSheet, View} from 'react-native';
 
-interface DefaultLayoutProps {
-  title?: string;
+interface IDefaultLayout {
   children: React.ReactNode;
-  back?: boolean;
-  right?: React.ReactNode;
-  type?: 'DEFAULT' | 'BOTTOM' | 'SEARCH';
+  extraChildren?: React.ReactNode;
 }
 
-const DefaultLayout = ({
-  title,
-  children,
-  back = false,
-  right,
-  type = 'DEFAULT',
-}: DefaultLayoutProps) => {
-  // const {top} = useSafeAreaInsets();
+export default ({children, extraChildren}: IDefaultLayout) => {
+  // const {top, bottom} = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={styles.layoutContainer}>
-      <View style={[styles.container]}>
-        {type === 'DEFAULT' && (
-          <DefaultHeader title={title} back={back} right={right} />
-        )}
-
-        {type === 'BOTTOM' && <HomeHeader title={title} right={right} />}
-
-        {type === 'SEARCH' && <SearchHeader />}
-
-        {children}
-      </View>
-    </SafeAreaView>
+    <View style={[styles.layout]}>
+      <View style={[styles.container]}>{children}</View>
+      {extraChildren}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  layoutContainer: {
+  layout: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: 'white',
   },
   container: {
     flex: 1,
   },
 });
-
-export default DefaultLayout;
